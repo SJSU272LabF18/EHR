@@ -15,6 +15,7 @@ family members, nurse, doctors of the patients till he/she takes the required me
 sensing the touch of the medicine organizer to send notifications in the connected devices.
 
 Project Proposal 2:
+
 Problem: 
 There has been increase in frauds taking place in United States. Many people are unaware of such frauds happening. Due to unawareness about such frauds many people fall in such traps. If people are made aware of such occurances frauds happening can be reduced. 
 
@@ -22,5 +23,6 @@ Solution:
 To develop a platform where people can post about fraud faced by them. When any fraud is posted, system will send notification to registered users and police department. Also unresgistered users can also view frauds list whenever they want. System can also filter frauds based on location, type of frauds, category of people targeted. 
 
 Project Proposal:
+
 Problem:
 Demographics of unemployement based on martial status, age, ethinicity and gender. 
