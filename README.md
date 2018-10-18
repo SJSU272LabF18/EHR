@@ -22,7 +22,7 @@ There has been increase in frauds taking place in United States. Many people are
 Solution: 
 To develop a platform where people can post about fraud faced by them. When any fraud is posted, system will send notification to registered users and police department. Also unresgistered users can also view frauds list whenever they want. System can also filter frauds based on location, type of frauds, category of people targeted. 
 
-Project Proposal:
+Project Proposal 3:
 
 Problem:
 Demographics of unemployement based on martial status, age, ethinicity and gender. 
