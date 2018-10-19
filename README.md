@@ -2,10 +2,10 @@
 
 Team Members:
 
-Harsh Patel\n
-Pranali Bhavsar
-Aakash Thakkar
-Yesha Dave
+Harsh Patel                                                                                                                             
+Pranali Bhavsar                                                                                                                         
+Aakash Thakkar                                                                                                                           
+Yesha Dave                                                                                                                               
 
 
 Project Proposal 1:
