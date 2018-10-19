@@ -2,12 +2,9 @@
 
 Team Members:
 
-Harsh Patel
-
+Harsh Patel\n
 Pranali Bhavsar
-
 Aakash Thakkar
-
 Yesha Dave
 
 
