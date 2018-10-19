@@ -1,9 +1,15 @@
 # Project-Team-13
+
 Team Members:
+
 Harsh Patel
+
 Pranali Bhavsar
+
 Aakash Thakkar
+
 Yesha Dave
+
 
 Project Proposal 1:
 
