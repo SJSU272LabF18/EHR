@@ -51,4 +51,4 @@ sensing the touch of the medicine organizer to send notifications in the connect
 ### Unemployment Demographics
 
 ##### Problem:
-Demographics of unemployement based on martial status, age, ethinicity and gender. 
+Study demographics of unemployement based on martial status, age, ethinicity and gender. Based on study predit future unemployment based on following catergories helping people to choose thier employment properly and reducing unemployment. 
