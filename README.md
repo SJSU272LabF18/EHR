@@ -13,6 +13,13 @@ Professor Rakesh Ranjan
 
 ## Project Proposal 1:
 --------------------------------
+Doctor’s Office Application:
+
+Problem: At the doctor’s clinic, the patients have to fill out a number of forms before getting treated. The patient may be an elderly person who may have trouble filling up so many forms by writing all the details. It may also be one who is not old but is in pain and going through the elaborate process of writing everything down adds to the woes. 
+
+Solution: We plan to implement an interactive system which will help the patients to fill out all the forms by giving answers verbally to the questions that are being asked.
+
+## Project Proposal 2:
 
 ### Medicine Alarm
 
@@ -24,7 +31,7 @@ Our proposal is to develop a system which triggers alarms in the devices of the 
 family members, nurse, doctors of the patients till he/she takes the required medication. An IOT based project which works by
 sensing the touch of the medicine organizer to send notifications in the connected devices.
 
-## Project Proposal 2:
+## Project Proposal 3:
 --------------------------------
 
 ### Fraud Awareness
@@ -35,7 +42,7 @@ There has been increase in frauds taking place in United States. Many people are
 ##### Solution: 
 To develop a platform where people can post about fraud faced by them. When any fraud is posted, system will send notification to registered users and police department. Also unresgistered users can also view frauds list whenever they want. System can also filter frauds based on location, type of frauds, category of people targeted. 
 
-## Project Proposal 3:
+## Project Proposal 4:
 --------------------------------
 
 ### Unemployment Demographics
