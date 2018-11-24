@@ -23,8 +23,8 @@ class Login extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="text" {...field.input} style={{backgroundColor:"#53E5DC",opacity:"0.5", height:"50px"}}/>
-                <div className="text-help">
+                <input className="form-control login-signup" type="text" {...field.input} style={{backgroundColor:"#75BDA1",opacity:"0.8", height:"50px", borderColor:"#40896D"}}/>
+                <div className="text-help" style={{color:"#F5160B"}}>
                     {touched ? error : ""}
                 </div>
             </div>
@@ -38,8 +38,8 @@ class Login extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="email" {...field.input} style={{backgroundColor:"#53E5DC",opacity:"0.5", height:"50px"}}/>
-                <div className="text-help">
+                <input className="form-control login-signup" type="email" {...field.input} style={{backgroundColor:"#75BDA1",opacity:"0.8", height:"50px", borderColor:"#40896D"}}/>
+                <div className="text-help" style={{color:"#F5160B"}}>
                     {touched ? error : ""}
                 </div>
             </div>
@@ -52,14 +52,14 @@ class Login extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="password" {...field.input} style={{backgroundColor:"#53E5DC",opacity:"0.3", height:"50px"}}/>
+                <input className="form-control login-signup" type="password" {...field.input}   style={{backgroundColor:"#75BDA1",opacity:"0.8", height:"50px", borderColor:"#40896D", }}/>
                 <div className="text-help">
                     {touched ? error : ""}
                 </div>
             </div>
         );
     }
-
+ 
     onSubmit(values){
         this.props.login(values);
     }
@@ -76,11 +76,13 @@ class Login extends Component {
         const { handleSubmit } = this.props;
         
         return (
-            <div className="col-md-12" >
+            <div>
+            <div className="col-md-12 backgroundBox background-img" > </div>
+            <div className="col-md-12">
                 {redirectVar}
-                <div className="signupBox col-md-12">
+                <div className="signupBox col-md-12" >
                     <div className="col-md-12" style={{textAlign:"center"}}>
-                        <h1 style={{color:"#4ABF91"}}> Signup </h1>
+                        <h1 style={{color:"#4ABF91", fontWeight:"bolder"}}> Signup </h1>
                         <h4>Returning Patient? <Link to="/signup">Login</Link></h4>
                     </div>
                     <div className="form-group col-md-12">
@@ -105,14 +107,16 @@ class Login extends Component {
                                     label="Password"
                                     name="password"
                                     component={this.renderFieldPassword}
+                                   
                                 />
-                               
-                                <button type="submit" className="btn btn-success btn-lg">Signup</button>
-                               
+                               <div className="col-md-4"></div>
+                               <div className="col-md-3">
+                                <button type="submit" className="btn btn-success btn-lg" >Signup</button>
+                                </div>
                             </form>
                         </div>
-                    </div>
-                    
+                   </div>
+                </div>    
             </div>
 
         );

@@ -5,49 +5,54 @@
 .heading p { color:#070044; font-size:14px; margin-bottom:10px; line-height:24px;text-align: center}
 .panel h4{ color:#626263; font-size:16px; margin: 0 0 8px 0; text-align: center}
 .panel p { color:#626263; font-size:14px; margin-bottom:10px; line-height:24px;text-align: center}
-.login-form .form-control {
-  background: #f7f7f7 none repeat scroll 0 0;
-  border: 1px solid #d4d4d4;
+.login-signup.form-control {
+  border: 1px solid #75BDA1;
   border-radius: 6px;
   font-size: 14px;
   height: 50px;
+  color: #000000
  }
+
+ 
  .loginBox{
+  position: absolute;
   border: 1px solid transparent;
   padding: 5px;
   height: auto;
-  width:40%;
+  width:35%;
   margin:auto;
   top:170px;
-  left: 30%
+  left: 52%
+}
+
+.backgroundBox{
+  position: absolute;
+  height: 100%;
+  width:100%;
 }
 .signupBox{
   position: absolute;
   border: 1px solid transparent;
   padding: 5px;
   height: auto;
-  width:40%;
+  width:35%;
   margin:auto;
   top:140px;
-  left: 30%;
+  left: 52%; 
  
-  
 }
 
 .background-img{
-  position: absolute;
-  width: 100%;
-  margin: 100%
-  /* background-image:url("./backgroud.jpg");
-   background-size:100%;
-    background-repeat:no-repeat; */
-    /* background: url("./backgroud.jpg") no-repeat center center fixed;  */
-    /* -webkit-background-size: cover;
+  
+    background: url("./backgroud.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover; */
-    /* background-size: cover; */
+    -o-background-size: cover; 
+     background-size: auto;
+     opacity: 0.7;
   }
 
-.text-help{
-  color:"red";
+.nav-icon{
+  color:"#000000";
+  font-size: 25px
 }
