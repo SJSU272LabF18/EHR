@@ -56,3 +56,37 @@
   color:"#000000";
   font-size: 25px
 }
+
+.container{
+ background: "#ffffff";
+  display: "flex";
+  justify-content: "center" 
+
+}
+
+.form-box{
+  border:1px solid black;
+  height:auto;
+  width: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 20px
+}
+
+.transparent {
+  background-color: transparent !important;
+  box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+}
+.right-border-none {
+  border-right:none !important;
+  box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+}
+.icon-size{
+  font-size:20px;
+  color:#757478;
+}
+
+.form-heading{
+  text-align: center;
+  color:#65CDA4;
+  font-size: 30px;
+}
