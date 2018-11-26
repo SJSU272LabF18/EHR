@@ -65,7 +65,7 @@
 }
 
 .form-box{
-  border:1px solid black;
+  border:transparent;
   height:auto;
   width: 100%;
   margin-bottom: 20px;
