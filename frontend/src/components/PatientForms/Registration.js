@@ -34,6 +34,7 @@ class Registration extends Component {
         this.maritalStatusHandler = this.maritalStatusHandler.bind(this);
         this.bloodGroupHandler = this.bloodGroupHandler.bind(this);
         this.allergyHandler = this.allergyHandler.bind(this);
+        this.submitRegistration = this.submitRegistration.bind(this);
     }
     fnameHandler = (e) => {
         this.setState({
@@ -100,16 +101,76 @@ class Registration extends Component {
             allergy:e.target.value
           });
     }
+
+    submitRegistration = (e) => {
+        var headers = new Headers();
+        let patient_email = localStorage.getItem("decoded_email");
+        e.preventDefault();
+        const data = { 
+            address: this.state.address,
+            city: this.state.city,
+            state:this.state.state,
+            zip:this.state.zip,
+            phone:this.state.phone,
+            diversity:this.state.diversity,
+            gender:this.state.gender,
+            dob:this.state.dob,
+            maritalStatus:this.state.maritalStatus,
+            bloodGroup:this.state.bloodGroup,
+            allergy:this.state.allergy     
+        }
+        console.log(data)
+        axios.defaults.withCredentials = true;
+        axios.post('http://localhost:3001/registration', data,
+        {
+            params:{
+                email: patient_email
+            }
+        })
+            .then(response => {
+                console.log("Status Code : ", response.status);
+                if (response.status === 200) {
+                    this.setState({
+                        onclick: true,
+                        resultmsg: "Patient Registered Successfully"
+                    })
+                       
+                } else {
+                    this.setState({
+                        onclick: false
+                    })
+                }
+            })
+            .catch(error => {
+                this.setState({
+                    onclick: false,
+                    errormsg: error.response.data
+                })
+            });
+    }
+
+
     render(){
+        let loginroute = null;
+        let nextPage = null;
+        let patient_email = localStorage.getItem("decoded_email");
+        if (patient_email == null) {
+            loginroute = <Redirect to="/login" />
+        }
+        if(this.state.onclick){
+            nextPage = <Redirect to="/" />
+        }
         return(
             <div className="container" >
+                {loginroute}
+                {nextPage}
                 <div className="col-md-12 form-box">
                     <div className="col-md-12">
                         <h2 className="form-heading">Patient Registration</h2>
                         < hr/>
                     </div>
-                    <div className="col-md-12">
-                    <form role="form">
+                    <div className="col-md-12" >
+                    <form role="form" onSubmit={this.submitRegistration}>
                            
                             <div class="col-md-12">
                             <div class=" form-group col-md-6">
@@ -261,10 +322,10 @@ class Registration extends Component {
                             </div>
                             </div>
                             </div>
-                            
-
-
-                      
+                            <div className="col-md-4"></div>
+                            <div className="col-md-3">
+                                <button type="submit" className="btn btn-success btn-lg">Submit</button>
+                            </div>  
                     </form>
                     </div>
                 </div>

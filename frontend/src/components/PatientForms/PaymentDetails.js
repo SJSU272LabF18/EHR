@@ -10,7 +10,8 @@ class PaymentDetails extends Component {
             cardHolderName: "",
             cardNumber: "",
             expDate: "",
-            cvv: ""
+            cvv: "",
+            onResponse:""
         }
         this.cardHolderHandler = this.cardHolderHandler.bind(this);
         this.cardNumberHandler = this.cardNumberHandler.bind(this);
@@ -42,16 +43,68 @@ class PaymentDetails extends Component {
                    
             });
         }
+    
+        submitPayment = (e) => {
+            var headers = new Headers();
+            let patient_email = localStorage.getItem("decoded_email");
+            e.preventDefault();
+            const data = { 
+                cardHolderName: this.state.cardHolderName,
+                cardNumber: this.state.cardNumber,
+                expDate:this.state.expDate,
+               cvv:this.state.cvv,        
+            }
+            console.log(data)
+            axios.defaults.withCredentials = true;
+            axios.post('http://localhost:3001/payment', data,
+            {
+                params:{
+                    email: patient_email
+                }
+            })
+                .then(response => {
+                    console.log("Status Code : ", response.status);
+                    if (response.status === 200) {
+                        this.setState({
+                            onResponse: true,
+                            resultmsg: "Payment Details Saved"
+                        })
+                           
+                    } else {
+                        this.setState({
+                            onResponse: false
+                        })
+                    }
+                })
+                .catch(error => {
+                    this.setState({
+                        onResponse: false,
+                        errormsg: error.response.data
+                    })
+                });
+        }
     render() {
+        let loginroute = null;
+        let nextPage = null;
+        let patient_email = localStorage.getItem("decoded_email");
+        if (patient_email == null) {
+            loginroute = <Redirect to="/login" />
+        }
+        if(this.state.onResponse){
+            nextPage = <Redirect to="/" />
+        }
+
         return (
             <div className="container" >
+                 {loginroute}
+                {nextPage}
                 <div className="col-md-12 form-box">
                     <div className="col-md-12">
                         <h2 className="form-heading">Payment Details</h2>
                         < hr />
                     </div>
                     <div className="col-md-12">
-                        <form role="form">
+                        <form role="form" onSubmit={this.submitPayment}>
                             <div className="col-md-12">
                                 <div class=" form-group col-md-5">
                                     <label>Card Holder's Name</label>

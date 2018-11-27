@@ -129,11 +129,11 @@ const mapDispatchStateToProps = dispatch => {
             axios.defaults.withCredentials = true;
             axios.post('http://localhost:3001/login', data)
                 .then(response => {
-                    // localStorage.setItem('token', response.data.token)
-                    // const decoded = jwt_decode(response.data.token)
-                    // localStorage.setItem('decoded_email',decoded.email )
-                    // localStorage.setItem('decoded_userType',decoded.userType )
-                    // localStorage.setItem('decoded_name',decoded.name )
+                    localStorage.setItem('token', response.data.token)
+                    const decoded = jwt_decode(response.data.token)
+                    localStorage.setItem('decoded_email',decoded.email )
+                    localStorage.setItem('decoded_lname',decoded.lname )
+                    localStorage.setItem('decoded_fname',decoded.fname )
                     dispatch({ type: 'LOGIN', payload: response.data, statusCode: response.status })
                 })
                 .catch(error => {

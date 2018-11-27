@@ -1,6 +1,6 @@
 var kafka = require('./../kafka/client');
 var jwt = require('jsonwebtoken');
-// var config = require('./../config/setting');
+var config = require('./../config/setting');
 exports.signup = function (req, res) {
 
   kafka.make_request('patient_signup',req.body, function(err,user){
@@ -14,18 +14,18 @@ exports.signup = function (req, res) {
           res.status(415).send(user);
         }else {
           console.log("Sign Up: ", user);
-        //   var user ={
-        //     "email": user.email,
-        //     "userType": user.userType,
-        //     "name": user.name
-        //   }
-        //   var token = jwt.sign(user, config.secret, {
-        //     expiresIn: 10080 // in seconds
-        //   });
+          var user ={
+            "email": user.email,
+            "lname": user.lName,
+            "fname": user.fName
+          }
+          var token = jwt.sign(user, config.secret, {
+            expiresIn: 10080 // in seconds
+          });
           res.json({
             status: 200,
             message: "user registered sucessfully",
-            // token: 'JWT ' + token
+            token: 'JWT ' + token
           }),(err) => {
             console.log("Error in Signup");
             res.status(415).send("Error in signup");
