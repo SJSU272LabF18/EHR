@@ -6,6 +6,7 @@ import Navigation from './Navigation/Navigation';
 import Registration from './PatientForms/Registration';
 import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
+import Connection from './connection';
 //Create a Main Component
 class Main extends Component {
     render(){
@@ -18,6 +19,7 @@ class Main extends Component {
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
+                <Route path="/connection" component={Connection}/>
             </div>
         )
     }
