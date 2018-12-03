@@ -3,7 +3,8 @@ import '../../App.css';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import { Redirect } from 'react-router';
-
+import '../../Navigation.css';
+import logo from './logo.png'
 class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -29,23 +30,21 @@ class Navbar extends Component {
     render() {
 
         return (
-            <div>
-                <nav class="navbar navbar" style={{backgroundColor:"#ffffff"}}>
-                    <div class="container-fluid" >
-                        <div class="navbar-header">
-                            <a class="navbar-brand" href="#">WebSiteName</a>
-                        </div>
-                      
-                        <ul class="nav navbar-nav navbar-right ">
-                            <li ><a href="#" style={{color:"#5A5D5C"}}><span class=" nav-icon glyphicon glyphicon-home" ></span>&nbsp; Home</a></li>
-                            <li ><a href="#" style={{color:"#5A5D5C"}}><span class=" nav-icon glyphicon glyphicon-phone-alt"></span>&nbsp; Contact Us</a></li>
-                            <li ><a href="#" style={{color:"#5A5D5C"}}><span class="nav-icon glyphicon glyphicon-log-in"></span>&nbsp; Admin</a></li>
-                        </ul>
-                        
-                    </div>
-                </nav>
-
+            <div class="containerFluid" >       
+                <nav style={{height:"50px"}}>
+                <span id="brandnav" style={{paddingTop:"0px"}}>
+                   <img src={logo} style={{height:"45px", marginTop:"0px"}}/>
+                </span>
+                <ul id="menunav">
+                    <li><a href="javascript:;">HOME</a></li>
+                    <li><a href="javascript:;">SERVICES</a></li>
+                    <li><a href="javascript:;"></a></li>
+                    <li onClick={this.handleLogout}><a >Logout</a></li>
+                </ul>
+                </nav> 
             </div>
+           
+            
         )
     }
 }
