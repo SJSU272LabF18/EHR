@@ -7,6 +7,10 @@ import Registration from './PatientForms/Registration';
 import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
 import Connection from './connection';
+import Insurance from './PatientForms/Insurance';
+import MedicalHistory from './PatientForms/MedicalHistory';
+import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
+
 //Create a Main Component
 class Main extends Component {
     render(){
@@ -20,6 +24,9 @@ class Main extends Component {
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
                 <Route path="/connection" component={Connection}/>
+                <Route path="/insurance" component={Insurance}/>
+                <Route path="/medical-history" component={MedicalHistory}/>
+                <Route path="/physical-health-record" component={PhysicalHealthRecord}/>
             </div>
         )
     }
