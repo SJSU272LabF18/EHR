@@ -7,8 +7,10 @@ class EmergencyContact extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
+            fname: "",
+            lname: "",
             contact: "",
+            email: "",
             relation: "",
             address: ""
         }
