@@ -1,0 +1,101 @@
+/* html {
+    box-sizing: border-box;
+  } */
+  
+  /* *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+  }
+   */
+ 
+  
+  navbar  {
+    background: #012533;
+    height: 90px;
+    z-index: 1;
+  }
+  
+  navbar #brand {
+    float: left;
+    display: block;
+    margin-left: 20px;
+    font-size: 50px;
+    line-height: 70px;
+    font-weight: bold;
+  }
+  
+  navbar #brand a {
+    color: #fff;
+    transition: all 0.3s ease-out;
+  }
+  
+  navbar #brand a:hover {
+    color: #777777;
+  }
+  
+  navbar #menu {
+    float: right;
+    /* left: 15%; */
+    position: relative;
+  }
+  
+  navbar #menu li {
+    display: inline-block;
+    padding: 0px 30px;
+    cursor: pointer;
+    line-height: 95px;
+    position: relative;
+    transition: all 0.3s ease-out;
+    font-size: 15px;
+    font-family:Lato, sans-serif;
+  }
+  
+  navbar #menu li a {
+    color: #fff;
+  }
+  
+  navbar #menu li a:hover {
+    color:#089AD5;
+  }
+  
+  .box-1{
+    width:280px;
+    height:"90px";
+    background-color: #ffffff;
+    color:#068095;
+    font-size: 50px;
+    top:45%;
+    left:10%;
+    position: absolute;
+    text-align: center
+  }
+  .box-2{
+    width:460px;
+    height:"90px";
+    background-color: #07ACC8;
+    color:#ffffff;
+    font-size: 45px;
+    top:56%;
+    left:10%;
+    position: absolute;
+    text-align: center;
+  }
+
+  .service-box{
+    width: "100%";
+    height:auto;
+    background-color: #ffffff;
+    margin: 0px 0px 20px 0px;
+    padding:60px 20px 60px 20px;
+    text-align: center;
+  }
+  .service-box-text{
+    color:#05628E;
+    font-size:30px;
+    margin-top:20px;
+  }
