@@ -6,6 +6,11 @@ import Navigation from './Navigation/Navigation';
 import Registration from './PatientForms/Registration';
 import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
+import Insurance from './PatientForms/Insurance';
+import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
+//import MedicalHistory from './PatientForms/MedicalHistory';
+import sidebar from './Sidebar/sidebar';
+
 //Create a Main Component
 class Main extends Component {
     render(){
@@ -18,6 +23,10 @@ class Main extends Component {
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
+                <Route path="/physical-health" component={PhysicalHealthRecord}/>
+  
+                <Route path="/insurance" component={Insurance}/>
+                <Route path="/sidebar" component={sidebar}/>
             </div>
         )
     }
