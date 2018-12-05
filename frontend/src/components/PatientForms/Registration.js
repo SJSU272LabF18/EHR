@@ -17,9 +17,7 @@ class Registration extends Component {
             diversity:"",
             gender:"",
             dob:"",
-            maritalStatus:"",
             bloodGroup:"",
-            allergy:""
         }
         this.fnameHandler = this.fnameHandler.bind(this);
         this.lnameHandler = this.lnameHandler.bind(this);
