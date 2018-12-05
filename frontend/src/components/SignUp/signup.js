@@ -9,7 +9,7 @@ import '../../App.css';
 import '../../Homepage.css'
 import logo from './../HomePage/logo.png'
 
-class Login extends Component {
+class Signup extends Component {
      constructor(props) {
      super(props);
      this.state = {
@@ -72,10 +72,10 @@ class Login extends Component {
     render() {
         let redirectVar = null;
         if(this.props.authFlag){
-            redirectVar = <Redirect to = "/" />
+            redirectVar = <Redirect to = "/patient-registration" />
         }
         const { handleSubmit } = this.props;
-        
+        console.log(this.props.errormsg)
         return (
             <div>
             <div className="col-md-12 backgroundBox background-img" > </div>
@@ -97,6 +97,7 @@ class Login extends Component {
                     <div className="col-md-12" style={{textAlign:"center"}}>
                         <h1 style={{color:"#4ABF91", fontWeight:"bolder"}}> Signup </h1>
                         <h4>Returning Patient? <Link to="/signup">Login</Link></h4>
+                        <p style={{color:"#ff4848"}}>{this.props.errormsg}</p>
                     </div>
                     <div className="form-group col-md-12">
                             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
@@ -170,7 +171,8 @@ class Login extends Component {
                     email: values.email,
                     password: values.password,
                     fName: values.fName,
-                    lName: values.lName
+                    lName: values.lName,
+                    isPatient : true
                 }
                 axios.defaults.withCredentials = true;
                 axios.post('http://localhost:3001/signup', data)
@@ -193,6 +195,6 @@ class Login extends Component {
     export default reduxForm({
     validate,
     form: "signup"
-    })(connect(mapStateToProps, mapDispatchStateToProps)(Login));
+    })(connect(mapStateToProps, mapDispatchStateToProps)(Signup));
 
   

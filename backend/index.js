@@ -24,8 +24,8 @@ app.use(cors({origin: "http://localhost:3000", credentials: true}));
 // app.use(cookieParser('cmpe273_kafka_passport_mongo'))
 // app.use(session({
 //     secret              : 'cmpe273_kafka_passport_mongo',
-//     resave              : false, 
-//     saveUninitialized   : false, 
+//     resave              : false,
+//     saveUninitialized   : false,
 //     duration            : 60 * 60 * 1000,   
 //     activeDuration      :  5 * 60 * 1000
 // }));
@@ -40,16 +40,21 @@ app.use(function(req, res, next) {
     res.setHeader('Cache-Control', 'no-cache');
     next();
   });
- 
+
 // var signupController=require('./controllers/signupController');
 var loginController=require('./controllers/loginController');
 var signupController=require('./controllers/signupController');
 var registrationController=require('./controllers/patientRegistrationController');
 var paymentController=require('./controllers/paymentController');
+
 var emergencyController = require('./controllers/patientEmergencyController');
+
+var doctorloginController = require('./controllers/doctorLoginController')
+
 //route to handle user registration
 // app.post('/signup',signupController.signup);
 app.post('/login',loginController.login);
+app.post('/doctorlogin',doctorloginController.login);
 app.post('/signup',signupController.signup);
 app.post('/registration',registrationController.registration);
 app.post('/payment',paymentController.payment);
