@@ -17,9 +17,8 @@ class Registration extends Component {
             diversity:"",
             gender:"",
             dob:"",
-            maritalStatus:"",
+            onclick : "",
             bloodGroup:"",
-            allergy:""
         }
         this.fnameHandler = this.fnameHandler.bind(this);
         this.lnameHandler = this.lnameHandler.bind(this);
@@ -178,7 +177,7 @@ class Registration extends Component {
             // add the custom input (microphone)
             microphoneInput: microphoneInput,
 
-            
+
             submitCallback: function () {
                 // remove Conversational Form
                 console.log(
@@ -196,11 +195,11 @@ class Registration extends Component {
                     state: finalData.state,
                     zip: finalData.zip
                 })
-                
+
                 alert("You made it! Check console for data");
             }
         });
-        
+
         if (!SpeechRecognition) {
             conversationalForm.addRobotChatResponse(
                 "SpeechRecognition not supported, so <strong>no</strong> Microphone here."
@@ -215,7 +214,7 @@ class Registration extends Component {
 
     }
 
-    
+
 
     fnameHandler = (e) => {
         console.log("fname:", e.target.value)
@@ -289,7 +288,7 @@ class Registration extends Component {
         // let patient_email = localStorage.getItem("decoded_email");
         let patient_email = "pranalibhavsar139@gmail.com"
         e.preventDefault();
-        const data = { 
+        const data = {
             address: this.state.address,
             city: this.state.city,
             state:this.state.state,
@@ -300,7 +299,7 @@ class Registration extends Component {
             dob:this.state.dob,
             maritalStatus:this.state.maritalStatus,
             bloodGroup:this.state.bloodGroup,
-            allergy:this.state.allergy     
+            allergy:this.state.allergy
         }
         console.log(data)
         axios.defaults.withCredentials = true;
@@ -317,7 +316,7 @@ class Registration extends Component {
                         onclick: true,
                         resultmsg: "Patient Registered Successfully"
                     })
-                       
+
                 } else {
                     this.setState({
                         onclick: false
@@ -348,14 +347,14 @@ class Registration extends Component {
                 {loginroute}
                 {nextPage}
                 <div className="col-md-6 form-box">
-               
+
                     <div className="col-md-12 form-heading-box">
                         <h2 className="form-heading">Patient Registration</h2>
-                      
+
                     </div>
                     <div className="col-md-12 content-box" >
                     <form role="form" onSubmit={this.submitRegistration} id="form">
-                           
+
                     <div class="col-md-12">
                             <div class=" form-group col-md-12">
                             <label>First Name</label>
@@ -366,7 +365,7 @@ class Registration extends Component {
                             </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-12">
                             <div class=" form-group col-md-12">
                             <label>Last Name</label>
@@ -376,7 +375,7 @@ class Registration extends Component {
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
-                        </div>  
+                        </div>
 
                             <div class="col-md-12">
                             <div class="form-group col-md-12">
@@ -427,9 +426,9 @@ class Registration extends Component {
 
                             </div>
 
-                           
-                            
-                           
+
+
+
                             <div class=" form-group col-md-4">
                             <label>Gender</label>
                             <div class="input-group">
@@ -444,10 +443,10 @@ class Registration extends Component {
                                 {/* </fieldset> */}
                             </div>
                         </div>
-                            
+
 
                             <div class="col-md-12">
-                           
+
                             <div class=" form-group col-md-12">
                             <label>Blood Group:</label>
 
@@ -455,12 +454,12 @@ class Registration extends Component {
                                     <input  type="radio" cf-label="A+" value="A+" id="A+" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "A+"} /><span style={{marginRight:"35px"}}>A+ </span>
                                     <input  type="radio" cf-label="A-" value="A-" id="A-" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "A-"}/> <span style={{marginRight:"35px"}}>A- </span>
                                     <input  type="radio" cf-label="B+" value="B+" id="B+" onChange={this.bloodGroupHandler}   checked={this.state.bloodGroup === "B+"} /> <span style={{marginRight:"35px"}}>B+ </span>
-                                    <input  type="radio" cf-label="B-" value="B-" id="B-" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "B-"} /><span style={{marginRight:"35px"}}>B- </span> 
+                                    <input  type="radio" cf-label="B-" value="B-" id="B-" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "B-"} /><span style={{marginRight:"35px"}}>B- </span>
                                     <input  type="radio" cf-label="O+" value="O+" id="O+" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "O+"}/> <span style={{marginRight:"35px"}}>O+ </span>
                                     <input  type="radio" cf-label="O-" value="O-" id="O-" onChange={this.bloodGroupHandler}   checked={this.state.bloodGroup === "O-"} /> <span style={{marginRight:"35px"}}>O- </span>
                                     <input  type="radio" cf-label="AB+" value="AB+" id="AB+" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "AB+"} /> <span style={{marginRight:"35px"}}>AB+ </span>
                                     <input  type="radio" cf-label="AB-" value="AB-" id="AB-" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "AB-"}/> <span style={{marginRight:"35px"}}>AB- </span>
-                                    
+
                                 </fieldset>
                             </div>
                             </div>
@@ -468,18 +467,18 @@ class Registration extends Component {
                             <div className="col-md-5"></div>
                             <div className="col-md-3">
                                 <button style={{marginTop:"20px"}}type="submit" className="btn btn-success btn-lg">Submit</button>
-                            </div> 
                             </div>
-                        
+                            </div>
+
                     </form>
                     </div>
                 </div>
-               
-               
+
+
                 <div className="col-md-5">
                     <div id="cf-context" role="cf-context" cf-context></div>
                 </div>
-                
+
             </div>
         )
     }
