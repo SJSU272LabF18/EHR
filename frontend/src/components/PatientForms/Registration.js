@@ -357,7 +357,7 @@ class Registration extends Component {
                             <label>First Name</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="First Name" type="text" name="fname" cf-questions="Hello, please tell me your first name." onChange={this.fnameHandler} defaultValue={this.state.fName}/>
+                                <input class="form-control right-border-none" placeholder="First Name" type="text" name="fname" cf-questions="Hello, welcome. Hope you get well soon. && Let's get started. Could you please, tell your First Name" onChange={this.fnameHandler} defaultValue={this.state.fName}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
@@ -368,7 +368,7 @@ class Registration extends Component {
                             <label>Last Name</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="Last Name" type="text" name="lname" cf-questions="Ohkay {fname}, please tell me your last name." onChange={this.lnameHandler} defaultValue={this.state.lName}/>
+                                <input class="form-control right-border-none" placeholder="Last Name" type="text" name="lname" cf-questions="Ohkay {fname},can you  tell me your last name." onChange={this.lnameHandler} defaultValue={this.state.lName}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
@@ -379,7 +379,7 @@ class Registration extends Component {
                             <label>Address</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" cf-questions="{fname} now, please tell me your address." onChange={this.addressHandler} defaultValue={this.state.address}/>
+                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" cf-questions="Alright {fname} now,  tell me your address." onChange={this.addressHandler} defaultValue={this.state.address}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
@@ -390,7 +390,7 @@ class Registration extends Component {
                             <label>City</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="City" type="text" name="city" cf-questions="{fname} Please, tell me your city " onChange={this.cityHandler} defaultValue={this.state.city}/>
+                                <input class="form-control right-border-none" placeholder="City" type="text" name="city" cf-questions=" Please tell me your city, {fname} " onChange={this.cityHandler} defaultValue={this.state.city}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
@@ -398,7 +398,7 @@ class Registration extends Component {
                             <label>State</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="State" type="text" name="state" cf-questions="{fname} Please, tell me your state " onChange={this.stateHandler} defaultValue={this.state.state}/>
+                                <input class="form-control right-border-none" placeholder="State" type="text" name="state" cf-questions="{fname} , tell me your state " onChange={this.stateHandler} defaultValue={this.state.state}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
@@ -409,7 +409,7 @@ class Registration extends Component {
                             <label>Zip Code</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="Zip Code" type="text" name="zip" cf-questions="{fname} Please, tell me your zipcode" onChange={this.zipHandler} defaultValue={this.state.zip}/>
+                                <input class="form-control right-border-none" placeholder="Zip Code" type="text" name="zip" cf-questions=" {fname} can you  tell me your zipcode, {}" onChange={this.zipHandler} defaultValue={this.state.zip}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
@@ -417,18 +417,18 @@ class Registration extends Component {
                             <label>Phone</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="fa fa-address-book"></span></span>
-                                <input class="form-control right-border-none" placeholder="Phone" type="text" name="phone" cf-questions="{fname} Please, tell me your contact number " onChange={this.phoneHandler} defaultValue={this.state.phone}/>
+                                <input class="form-control right-border-none" placeholder="Phone" type="text" name="phone" cf-questions="{fname} , tell me your contact number " onChange={this.phoneHandler} defaultValue={this.state.phone}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
 
 
                             </div>
 
-                            <div class=" form-group col-md-4">
+                            <div class=" form-group col-md-6">
                             <label>Gender</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input "><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="Gender" type="text" name="gender" cf-questions="{fname} Please, tell me your gender " onChange={this.genderHandler} defaultValue={this.state.gender}/>
+                                <input class="form-control right-border-none" placeholder="Gender" type="text" name="gender" cf-questions="{fname} , tell me your gender " onChange={this.genderHandler} defaultValue={this.state.gender}/>
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                                 {/* <fieldset  id="gender" name="gender" cf-questions="Please, choose your gender from following. <span>Male</span>, <span>Female </span>or<span>Other</span>"> */}
@@ -445,7 +445,7 @@ class Registration extends Component {
                             <div class=" form-group col-md-12">
                             <label>Blood Group:</label>
 
-                             <fieldset  class="radio-group-box"id="bloodgroup" name="bloodgroup" cf-questions="Please, choose your blood group from following. <span>A+</span>, <span>A- </span>,<span>B+</span>, <span>B-</span>,<span>O+</span>,<span>O-</span>,<span>AB+</span> or <span>AB-</span> ">
+                             <fieldset  class="radio-group-box"id="bloodgroup" name="bloodgroup" cf-questions="Last one to go {fname} , choose your blood group from following. ">
                                     <input  type="radio" cf-label="A+" value="A+" id="A+" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "A+"} /><span style={{marginRight:"35px"}}>A+ </span>
                                     <input  type="radio" cf-label="A-" value="A-" id="A-" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "A-"}/> <span style={{marginRight:"35px"}}>A- </span>
                                     <input  type="radio" cf-label="B+" value="B+" id="B+" onChange={this.bloodGroupHandler}   checked={this.state.bloodGroup === "B+"} /> <span style={{marginRight:"35px"}}>B+ </span>
