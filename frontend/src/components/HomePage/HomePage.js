@@ -27,11 +27,11 @@ class HomePage extends Component {
                     <a href="javascript:;"><img src={logo} style={{marginTop:"10px", opacity:"1"}}/></a>
                 </span>
                 <ul id="menu">
-                    <li><a href="javascript:;">HOME</a></li>
+                    <li><a href="/homepage">HOME</a></li>
                     <li><a href="javascript:;">SERVICES</a></li>
-                    <li><a href="javascript:;">NEW PATIENT</a></li>
-                    <li><a href="javascript:;">EXISTING PATIENT</a></li>
-                    <li><a href="javascript:;">ADMIN</a></li>
+                    <li><a href="/signup">NEW PATIENT</a></li>
+                    <li><a href="/login">EXISTING PATIENT</a></li>
+                    <li><a href="/doctor/login">ADMIN</a></li>
                 </ul>
                 </navbar>
                 <div className="box-1">

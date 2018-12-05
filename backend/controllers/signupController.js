@@ -17,7 +17,8 @@ exports.signup = function (req, res) {
           var user ={
             "email": user.email,
             "userType": user.isPatient,
-            "name": user.fName + " " + user.lName
+            "name": user.fName + " " + user.lName,
+            "phone": user.phone
           }
           var token = jwt.sign(user, config.secret, {
             expiresIn: 10080 // in seconds

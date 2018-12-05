@@ -12,11 +12,14 @@ import Insurance from './PatientForms/Insurance';
 
 // import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
+import DoctorDashboard from './Dashboard/DoctorDashboard';
+import DownloadForm from './Dashboard/DownloadForm'
 
 import DoctorLogin from './Login/doctorLogin';
 
 import Purpose from './PatientForms/Purpose';
 import dashboard from './PatientForms/dashboard';
+import PatientNavigation from './Navigation/PatientNavigation';
 
 
 //Create a Main Component
@@ -27,16 +30,21 @@ class Main extends Component {
                 {/*Render Different Component based on Route*/}
                 <Route path="/signup" component={Signup}/>
                 <Route path="/login" component={Login}/>
-                <Route path="/doctor-login" component={DoctorLogin}/>
+                <Route path="/patient" component={PatientNavigation}/>
                 <Route path="/homepage" component={HomePage}/>
-                <Route path="/nav" component={Navigation}/>
+                <Route path="/doctor" component={Navigation}/>
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
                 {/* <Route path="/sidebar" component={sidebar}/> */}
                 <Route path="/purpose" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>
-                <Route path="/dashboard" component={dashboard}/>
+
+                <Route path="/sidebar" component={sidebar}/>
+                <Route path="/doctor/dashboard" component={DoctorDashboard}/>
+                <Route path="/download" component={DownloadForm}/>
+                <Route path="/patient/dashboard" component={dashboard}/>
+                <Route path="/doctor/login" component={DoctorLogin}/>
 
             </div>
         )

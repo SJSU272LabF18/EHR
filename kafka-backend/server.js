@@ -11,6 +11,7 @@ var Payment = require('./Services/patientPayment.js');
 var Emergency = require('./Services/patientEmergency')
 
 var DoctorLogin = require('./Services/doctorLogin')
+var GetPatients = require('./Services/getpatients')
 
 
 function handleTopicRequest(topic_name,fname){
@@ -51,6 +52,8 @@ handleTopicRequest("patient_signup",Signup)
 handleTopicRequest("patient_registration",Registration)
 handleTopicRequest("patient_payment",Payment)
 
-handleTopicRequest("patient_emergency",Emergency)
+handleTopicRequest("doctor_login",DoctorLogin)
+handleTopicRequest("get_patients",GetPatients)
 
+handleTopicRequest("patient_emergency",Emergency)
 handleTopicRequest("doctor_login",DoctorLogin)

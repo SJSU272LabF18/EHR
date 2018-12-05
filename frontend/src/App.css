@@ -27,12 +27,14 @@
 
 .doctorloginBox{
   border: 1px solid transparent;
-  padding: 5px;
-  height: auto;
-  width:35%;
-  margin:auto;
-  top:150px;
-  margin-left: 400px
+  background-color: #fff;
+  margin: auto;
+  width: 30%;
+  margin-top: 170px;
+  padding:10px 20px 5px 20px;
+  -moz-box-shadow: 1px 1px 1px rgba(209, 208, 208, 0.5);
+  -webkit-box-shadow: 1px 1px 1px rgba(209, 208, 208, 0.5);
+  box-shadow: 1px 1px 1px rgba(209, 208, 208, 0.5);
 }
 
 .backgroundBox{

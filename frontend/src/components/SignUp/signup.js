@@ -84,11 +84,11 @@ class Signup extends Component {
                     <a href="javascript:;"><img src={logo} style={{marginTop:"10px", opacity:"1"}}/></a>
                 </span>
                 <ul id="menu">
-                    <li><a href="javascript:;">HOME</a></li>
+                    <li><a href="/homepage">HOME</a></li>
                     <li><a href="javascript:;">SERVICES</a></li>
-                    <li><a href="javascript:;">NEW PATIENT</a></li>
-                    <li><a href="javascript:;">EXISTING PATIENT</a></li>
-                    <li><a href="javascript:;">ADMIN</a></li>
+                    <li><a href="/signup">NEW PATIENT</a></li>
+                    <li><a href="/login">EXISTING PATIENT</a></li>
+                    <li><a href="/doctor/login">ADMIN</a></li>
                 </ul>
                 </navbar>
             <div className="col-md-12">
@@ -116,7 +116,11 @@ class Signup extends Component {
                                     name="email"
                                     component={this.renderFieldEmail}
                                 />
-
+                                <Field  
+                                    label="Phone Number"
+                                    name="phone"
+                                    component={this.renderFieldText}
+                                />
                                 <Field
                                     label="Password"
                                     name="password"
@@ -172,6 +176,7 @@ class Signup extends Component {
                     password: values.password,
                     fName: values.fName,
                     lName: values.lName,
+                    phone: values.phone,
                     isPatient : true
                 }
                 axios.defaults.withCredentials = true;
@@ -179,9 +184,10 @@ class Signup extends Component {
                     .then(response => {
                         localStorage.setItem('token', response.data.token)
                         const decoded = jwt_decode(response.data.token)
-                        localStorage.setItem('decoded_email',decoded.email )
-                        localStorage.setItem('decoded_lname',decoded.lname )
-                        localStorage.setItem('decoded_fname',decoded.fname )
+                        localStorage.setItem('email',decoded.email )
+                        localStorage.setItem('name',decoded.name )
+                        localStorage.setItem('isPatient',decoded.userType )
+                        localStorage.setItem('phone',decoded.phone )
                         dispatch({type: 'SIGNUP', payload: response.data, statusCode: response.status})
                     })
                     .catch(error => {
