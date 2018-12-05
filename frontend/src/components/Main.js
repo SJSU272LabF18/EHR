@@ -14,7 +14,7 @@ import HomePage from './HomePage/HomePage';
 import DoctorLogin from './Login/doctorLogin';
 
 import Purpose from './PatientForms/Purpose';
-
+import dashboard from './PatientForms/dashboard';
 
 
 //Create a Main Component
@@ -35,6 +35,7 @@ class Main extends Component {
                 <Route path="/purpose" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>
                 <Route path="/sidebar" component={sidebar}/>
+                <Route path="/dashboard" component={dashboard}/>
             </div>
         )
     }
