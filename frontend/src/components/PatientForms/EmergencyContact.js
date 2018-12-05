@@ -274,7 +274,11 @@ class EmergencyContact extends Component {
     }
 
     render() {
+        let nextPage = null;
         console.log(this.state.fname);
+        if(this.state.onclick){
+            nextPage = <Redirect to="/patient/dashboard" />
+        }
         return (
             <div className="col-md-12">
                 <div className="col-md-6 form-box">

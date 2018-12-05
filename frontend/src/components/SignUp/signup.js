@@ -72,7 +72,7 @@ class Signup extends Component {
     render() {
         let redirectVar = null;
         if(this.props.authFlag){
-            redirectVar = <Redirect to = "/patient-registration" />
+            redirectVar = <Redirect to = "/patient/registration" />
         }
         const { handleSubmit } = this.props;
         console.log(this.props.errormsg)
@@ -96,7 +96,7 @@ class Signup extends Component {
                 <div className="signupBox col-md-12" >
                     <div className="col-md-12" style={{textAlign:"center"}}>
                         <h1 style={{color:"#4ABF91", fontWeight:"bolder"}}> Signup </h1>
-                        <h4>Returning Patient? <Link to="/signup">Login</Link></h4>
+                        <h4>Returning Patient? <Link to="/login">Login</Link></h4>
                         <p style={{color:"#ff4848"}}>{this.props.errormsg}</p>
                     </div>
                     <div className="form-group col-md-12">
