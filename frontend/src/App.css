@@ -184,3 +184,47 @@ input[type=date] {
   overflow: hidden;
 
 } 
+
+.pdf-banner{
+  height:100px;
+  position: relative;
+  margin: 0px;
+  padding:0px;
+  background-color: #B0C3C8;
+}
+
+.pdf-patient-info{
+  padding: 0px;
+  margin-top: "100px"
+}
+
+.tipbox{
+  background-color: #EAF3A4;
+  -moz-box-shadow: 1px 3px 4px rgba(209, 208, 208, 0.5);
+  -webkit-box-shadow: 1px 3px 4px rgba(209, 208, 208, 0.5);
+  box-shadow: 1px 3px 4px rgba(209, 208, 208, 0.5);
+  padding: 5px;
+  border-radius: 25px;
+  margin:5px;
+  font-size: 16px;
+ position:"absolute"
+
+}
+
+.labelpdf{
+  font-size: 18px;
+  font-weight:"bold";
+}
+
+.record-banner{
+  height:"100px";
+  background-color: #EAF3A4;
+  text-align: center;
+  /* padding: 5px; */
+  margin: 10px 5px 20px 5px;
+  width:100%;
+  border-radius: 15px;
+  -moz-box-shadow: 1px 3px 4px rgba(209, 208, 208, 0.5);
+  -webkit-box-shadow: 1px 3px 4px rgba(209, 208, 208, 0.5);
+  box-shadow: 1px 3px 4px rgba(209, 208, 208, 0.5);
+}
