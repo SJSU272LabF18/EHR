@@ -14,7 +14,13 @@ class Purpose extends Component {
             dose: "",
             duration: "",
             surgery: "",
-            year: ""
+           
+            height: "",
+            weight: "",
+            bloodPressure: "",
+            sugarLevel: "",
+            heartRate: "",
+            bodyTemp: ""
         }
         this.purposeHandler = this.purposeHandler.bind(this);
         this.allergyHandler = this.allergyHandler.bind(this);
@@ -23,7 +29,13 @@ class Purpose extends Component {
         this.doseHandler = this.doseHandler.bind(this);
         this.durationHandler = this.durationHandler.bind(this);
         this.surgeryHandler = this.surgeryHandler.bind(this);
-        this.yearHandler = this.yearHandler.bind(this);
+       
+        this.heightHandler = this.heightHandler.bind(this);
+        this.weightHandler = this.weightHandler.bind(this);
+        this.bloodPressureHandler = this.bloodPressureHandler.bind(this);
+        this.sugarLevelHandler = this.sugarLevelHandler.bind(this);
+        this.heartRateHandler = this.heartRateHandler.bind(this);
+        this.bodyTempHandler = this.bodyTempHandler.bind(this);
     }
 
     purposeHandler = (e) => {
@@ -68,25 +80,56 @@ class Purpose extends Component {
                    
             });
         }
-    yearHandler = (e) => {
+    
+        heightHandler = (e) => {
             this.setState({
-                year: e.target.value,
-                   
+                height: e.target.value,
+               
             });
         }
+        weightHandler = (e) => {
+            this.setState({
+                weight: e.target.value,
+               
+            });
+        }
+        bloodPressureHandler = (e) => {
+            this.setState({
+                bloodPressure: e.target.value,
+               
+            });
+        }
+        sugarLevelHandler = (e) => {
+            this.setState({
+                sugarLevel: e.target.value,
+               
+            });
+        }
+        heartRateHandler = (e) => {
+                this.setState({
+                    heartRate: e.target.value,
+                   
+                });
+            }
+        bodyTempHandler = (e) => {
+                this.setState({
+                    bodyTemp: e.target.value,
+                       
+                });
+            }
 
     render() {
         return (
-            <div className="container" >
-                <div className="col-md-12 form-box">
-                    <div className="col-md-12">
+            <div className="col-md-12" >
+                <div className="col-md-6 form-box">
+                    <div className="col-md-12 form-heading-box">
                         <h2 className="form-heading">Patient Visit Record</h2>
-                        < hr />
+                        
                     </div>
-                    <div className="col-md-12" style={{border:"thin"}}>
+                    <div className="col-md-12 content-box" >
                         <form role="form">
                             <div className="col-md-12">
-                                <div class=" form-group col-md-4">
+                                <div class=" form-group col-md-12">
                                     <label>Purpose of Visit</label>
                                     <div class="input-group">
                                         <input type="radio" name="purpose" value="regular" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Regular checkup <br />  
@@ -94,75 +137,133 @@ class Purpose extends Component {
                                         <input type="radio" name="purpose" value="new" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Visit regarding new case
                                     </div>
                                 </div>
-                                <div class=" form-group col-md-4">
+                            </div>
+                            <div class=" form-group col-md-12">
+                                <div class=" form-group col-md-8">
                                     <label>Date of visit</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon "><span class="glyphicon glyphicon-calendar"></span></span>
+                                        <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-calendar"></span></span>
                                         <input class="form-control right-border-none" placeholder="Date of Visit" type="date" name="date" onChange={this.dateHandler} defaultValue={this.state.date} />
-                                        <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                     </div>
                                 </div>
-                                <div class=" form-group col-md-4">
+                                </div>
+                                <div className="col-md-12">
+                                <div class=" form-group col-md-5">
+                                    <label>Height</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input "><span class="fa fa-address-book"></span></span>
+                                        <input class="form-control right-border-none" placeholder="Height" type="text" name="height" onChange={this.heightHandler} defaultValue={this.state.height} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                                <div class=" form-group col-md-1"></div>
+                                <div class=" form-group col-md-5">
+                                    <label>Weight</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><i class="fa fa-weight"></i></span>
+                                        <input class="form-control right-border-none" placeholder="Weight" type="text" name="weight" onChange={this.weightHandler} defaultValue={this.state.weight} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                                                                
+                            </div>
+                            <div className="col-md-12" >
+                                <div class=" form-group col-md-5">
+                                    <label>Blood Pressure</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><i class="fa fa-stethoscope"></i></span>
+                                        <input class="form-control right-border-none" placeholder="Blood Pressure" type="text" name="bloodPressure" onChange={this.bloodPressureHandler} defaultValue={this.state.bloodPressure} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                                <div class=" form-group col-md-1"></div>
+                                <div class=" form-group col-md-5">
+                                    <label>Sugar Level</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><i class="fa fa-stethoscope"></i></span>
+                                        <input class="form-control right-border-none" placeholder="Sugar Level" type="text" name="sugarLevel" onChange={this.sugarLevelHandler} defaultValue={this.state.sugarLevel} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div className="col-md-12" >
+                                <div class=" form-group col-md-5">
+                                    <label>Heart Rate</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><i class="fa fa-heartbeat"></i></span>
+                                        <input class="form-control right-border-none" placeholder="Heart Rate" type="text" name="heartRate" onChange={this.heartRateHandler} defaultValue={this.state.heartRate} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                                <div class=" form-group col-md-1"></div>
+                                <div class=" form-group col-md-5">
+                                    <label>Body Temperature</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><i class="fa fa-thermometer-three-quarters"></i></span>
+                                        <input class="form-control right-border-none" placeholder="Body Temperature" type="text" name="bodyTemp" onChange={this.bodyTempHandler} defaultValue={this.state.bodyTemp} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                                
+                            </div>  
+                                <div class=" form-group col-md-12">
+                                <div class=" form-group col-md-12">
                                     <label>Allergy</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon "><span class="glyphicon glyphicon-th-list"></span></span>
+                                        <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-th-list"></span></span>
                                         <input class="form-control right-border-none" placeholder="Allergy" type="text" name="allergy" onChange={this.allergyHandler} defaultValue={this.state.allergy} />
-                                        <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                     </div>
                                 </div>
                             </div>
-                                <br /><br /><br /><br /><br /><br /><br />
+
                         <div className="col-md-12" style={{border:"thin"}}>
-                                <label>Current Medication</label>
-                                <br />
-                                <div class=" form-group col-md-4">
+                                <label>Medication Priscribed</label>
+                                
+                                <div class=" form-group col-md-12">
                                     <label>Medicine Name</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon "><span class="glyphicon glyphicon-list-alt"></span></span>
+                                        <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-list-alt"></span></span>
                                         <input class="form-control right-border-none" placeholder="Medicine Name" type="text" name="medicine" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
-                                        <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                                    </div>
-                                </div>
-                                <div class=" form-group col-md-4">
-                                    <label>Dose</label>
-                                    <div class="input-group">
-                                        <input type="radio" name="dose" value="male" onChange={this.doseHandler} defaultValue={this.state.dose}/> 1 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        <input type="radio" name="dose" value="female" onChange={this.doseHandler} defaultValue={this.state.dose}/> 2 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        <input type="radio" name="dose" value="other" onChange={this.doseHandler} defaultValue={this.state.dose}/> 3
-                                    </div>
-                                </div>
-                                <div class=" form-group col-md-4">
-                                    <label>Duration</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon "><span class="glyphicon glyphicon-hourglass"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration" onChange={this.durationHandler} defaultValue={this.state.duration} />
-                                        <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                                    </div>
-                                </div>
-                            </div> <br /><br /><br /><br /><br /><br /><br />
-                                <div className="col-md-12" style={{border:"thin"}}>
-                                <label>Past Medical History</label>
-                                <br />
-                                <div class=" form-group col-md-6">
-                                    <label>Surgery</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Surgery" type="text" name="surgery" onChange={this.surgeryHandler} defaultValue={this.state.surgery} />
-                                        <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                                    </div>
-                                </div>
-
-                            
-                                <div class="col-md-6">
-                                    <label>Year</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon "><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Year" type="date" name="year" onChange={this.yearHandler} defaultValue={this.state.year} />
-                                        <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                     </div>
                                 </div>
                             </div>
-                    
+                            <div className="col-md-12" style={{border:"thin"}}>
+                                <div class=" form-group col-md-6">
+                                    <label>Dose</label>
+                                    <div class="input-group radio-group-box" >
+                                        <input type="checkbox" name="dose" value="Moring" onChange={this.doseHandler} defaultValue={this.state.dose}/> <span style={{marginRight:"70px"}}>Morning</span>
+                                        <input type="checkbox" name="dose" value="AfterNoon" onChange={this.doseHandler} defaultValue={this.state.dose}/><span style={{marginRight:"70px"}}>Afternoon </span>
+                                        <input type="checkbox" name="dose" value="Evening" onChange={this.doseHandler} defaultValue={this.state.dose}/>Evening
+                                    </div>
+                                </div>
+                                <div class=" form-group col-md-6">
+                                    <label>Duration</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-hourglass"></span></span>
+                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration" onChange={this.durationHandler} defaultValue={this.state.duration} />
+                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                    </div>
+                                </div>
+                            </div> 
+                                <div className="col-md-12" style={{border:"thin"}}>
+                                <label>Need for Surgery </label>
+                                <br />
+                                <fieldset class="col-md-3 radio-group-box">
+                                     <input type="radio"  value="Yes" id="yes" onChange={this.surgeryHandler} /><span style={{marginRight:"35px"}}>Yes </span>
+                                    <input type="radio"  value="No" id="no" onChange={this.surgeryHandler}/><span style={{marginRight:"35px"}}>No </span>
+                                    </fieldset>
+                               
+                            </div>
+                            <div className="col-md-12">
+                            <div className="col-md-4"></div>
+                            <div className="col-md-3">
+                                <button style={{marginTop:"20px", marginLeft:"20px"}}type="submit" className="btn btn-success btn-lg">Submit</button>
+                            </div> 
+                            </div>
                         </form>
                     </div>
                 </div>

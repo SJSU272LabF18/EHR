@@ -17,8 +17,9 @@ class Registration extends Component {
             diversity:"",
             gender:"",
             dob:"",
-            onclick : "",
             bloodGroup:"",
+            onclick:"",
+            resultmsg:""
         }
         this.fnameHandler = this.fnameHandler.bind(this);
         this.lnameHandler = this.lnameHandler.bind(this);
@@ -32,7 +33,7 @@ class Registration extends Component {
         this.dobHandler = this.dobHandler.bind(this);
         this.maritalStatusHandler = this.maritalStatusHandler.bind(this);
         this.bloodGroupHandler = this.bloodGroupHandler.bind(this);
-        this.allergyHandler = this.allergyHandler.bind(this);
+
         this.submitRegistration = this.submitRegistration.bind(this);
     }
 
@@ -277,11 +278,7 @@ class Registration extends Component {
             bloodGroup:e.target.value
           });
     }
-    allergyHandler = (e) => {
-        this.setState({
-            allergy:e.target.value
-          });
-    }
+
 
     submitRegistration = (e) => {
         var headers = new Headers();
@@ -424,10 +421,8 @@ class Registration extends Component {
                                 <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
 
+
                             </div>
-
-
-
 
                             <div class=" form-group col-md-4">
                             <label>Gender</label>
@@ -450,7 +445,7 @@ class Registration extends Component {
                             <div class=" form-group col-md-12">
                             <label>Blood Group:</label>
 
-                             <fieldset  id="bloodgroup" name="bloodgroup" cf-questions="Please, choose your blood group from following. <span>A+</span>, <span>A- </span>,<span>B+</span>, <span>B-</span>,<span>O+</span>,<span>O-</span>,<span>AB+</span> or <span>AB-</span> ">
+                             <fieldset  class="radio-group-box"id="bloodgroup" name="bloodgroup" cf-questions="Please, choose your blood group from following. <span>A+</span>, <span>A- </span>,<span>B+</span>, <span>B-</span>,<span>O+</span>,<span>O-</span>,<span>AB+</span> or <span>AB-</span> ">
                                     <input  type="radio" cf-label="A+" value="A+" id="A+" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "A+"} /><span style={{marginRight:"35px"}}>A+ </span>
                                     <input  type="radio" cf-label="A-" value="A-" id="A-" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "A-"}/> <span style={{marginRight:"35px"}}>A- </span>
                                     <input  type="radio" cf-label="B+" value="B+" id="B+" onChange={this.bloodGroupHandler}   checked={this.state.bloodGroup === "B+"} /> <span style={{marginRight:"35px"}}>B+ </span>

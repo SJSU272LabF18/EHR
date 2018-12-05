@@ -7,7 +7,7 @@ import Registration from './PatientForms/Registration';
 import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
 import Insurance from './PatientForms/Insurance';
-import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
+
 
 
 // import sidebar from './Sidebar/sidebar';
@@ -33,7 +33,6 @@ class Main extends Component {
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
-                <Route path="/physical-health" component={PhysicalHealthRecord}/>
                 {/* <Route path="/sidebar" component={sidebar}/> */}
                 <Route path="/purpose" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>

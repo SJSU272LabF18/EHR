@@ -277,30 +277,30 @@ class EmergencyContact extends Component {
         console.log(this.state.fname);
         return (
             <div className="col-md-12">
-                <div className="col-md-7">
-                    <div className="container" >
-                        <div className="col-md-12 form-box">
-                            <div className="col-md-8">
+                <div className="col-md-6 form-box">
+                   
+                            <div className="col-md-12 form-heading-box">
                                 <h2 className="form-heading">Emergency Contact</h2>
-                                < hr />
                             </div>
-                            <div className="col-md-8">
+                            <div className="col-md-12 content-box" >
                                 <form role="form" onSubmit={this.submitEmergency} id='form'>
                                     <div className="col-md-12">
-                                        <div class=" form-group col-md-6">
+                                        <div class=" form-group col-md-12">
                                             <label>First Name</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
+                                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
                                                 <input class="form-control right-border-none" placeholder="First Name" type="text" name="fname" cf-questions="Hello, please tell me the first name of your emergency contact?" onChange={this.fnameHandler} defaultValue={this.state.fname} />
-                                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                             </div>
                                         </div>
-                                        <div class=" form-group col-md-6">
+                                        </div>
+                                        <div className="col-md-12">
+                                        <div class=" form-group col-md-12">
                                             <label>Last Name</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
+                                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
                                                 <input class="form-control right-border-none" placeholder="Last Name" type="text" name="lname" cf-questions="Hello, please tell me the last name of {fname}?" onChange={this.lnameHandler} defaultValue={this.state.lname} />
-                                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -308,38 +308,40 @@ class EmergencyContact extends Component {
                                         <div class=" form-group col-md-6">
                                             <label>Contact Number</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon "><span class="fa fa-address-book"></span></span>
+                                                <span class="input-group-addon icon-input"><span class="fa fa-address-book"></span></span>
                                                 <input class="form-control right-border-none" placeholder="Contact Number" type="text" name="contact" onChange={this.contactHandler} cf-questions="Hello, please tell me contact number of {fname}?" defaultValue={this.state.contact} />
-                                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                             </div>
                                         </div>
                                         <div class=" form-group col-md-6">
                                             <label>Relation</label>
                                             <div class="input-group">
-                                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
+                                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
                                                 <input class="form-control right-border-none" placeholder="Relation" type="text" name="relation" cf-questions="Hello, please tell your relation with {fname}?" onChange={this.relationHandler} defaultValue={this.state.relation} />
-                                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="col-md-12">
-                                            <label>Address</label>
-                                            <div class="input-group">
-                                                <span class="input-group-addon "><span class="fa fa-address-card"></span></span>
-                                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" cf-questions="Hello, please tell me address of {fname}?" onChange={this.addressHandler} defaultValue={this.state.address} />
-                                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                                             </div>
                                         </div>
                                     </div>
+
+                                        <div class="col-md-12">
+                                        <div class=" form-group col-md-12">
+                                            <label>Address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon icon-input"><span class="fa fa-address-card"></span></span>
+                                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" cf-questions="Hello, please tell me address of {fname}?" onChange={this.addressHandler} defaultValue={this.state.address} />
+                                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
                                     <div className="col-md-5"></div>
                                     <div className="col-md-3">
                                         <button type="submit" className="btn btn-success btn-lg" style={{ marginTop: "15px" }}>Submit</button>
                                     </div>
+                                    </div>
                                 </form>
                             </div>
-                        </div>
-                    </div>
+                       
                 </div>
                 <div className="col-md-5">
                     {/* <form id="form">
