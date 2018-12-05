@@ -58,7 +58,7 @@ class DoctorLogin extends Component {
     render() {
         let redirectVar = null;
         if (this.props.authFlag) {
-            redirectVar = <Redirect to="/" />
+            redirectVar = <Redirect to="/doctor/dashboard" />
         }
         const { handleSubmit } = this.props;
 
@@ -133,7 +133,7 @@ const mapDispatchStateToProps = dispatch => {
                     const decoded = jwt_decode(response.data.token)
                     localStorage.setItem('email',decoded.email )
                     localStorage.setItem('name',decoded.name )
-                    localStorage.setItem('userType',decoded.userType )
+                    localStorage.setItem('isPatient',decoded.userType )
                     dispatch({ type: 'LOGIN', payload: response.data, statusCode: response.status })
                 })
                 .catch(error => {

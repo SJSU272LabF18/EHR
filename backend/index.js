@@ -47,6 +47,7 @@ var signupController=require('./controllers/signupController');
 var registrationController=require('./controllers/patientRegistrationController');
 var paymentController=require('./controllers/paymentController');
 var doctorloginController = require('./controllers/doctorLoginController')
+var doctorDashboardController = require('./controllers/DoctorDashboardController')
 //route to handle user registration
 // app.post('/signup',signupController.signup);
 app.post('/login',loginController.login);
@@ -54,6 +55,7 @@ app.post('/doctorlogin',doctorloginController.login);
 app.post('/signup',signupController.signup);
 app.post('/registration',registrationController.registration);
 app.post('/payment',paymentController.payment);
+app.get('/getPatients',doctorDashboardController.getpatients);
 //start your server on port 3001
 app.listen(3001);
 console.log("Server Listening on port 3001")
