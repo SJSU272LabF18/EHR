@@ -269,7 +269,7 @@ class PaymentDetails extends Component {
         return (
             <div className="col-md-12">
                 <div className="col-md-7">
-                    <div className="container" >
+                    {/* <div className="container" >
                         {loginroute}
                         {nextPage}
                         <div className="col-md-12 form-box">
@@ -323,9 +323,18 @@ class PaymentDetails extends Component {
                                 </form>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
+                    <form id="form" cf-form>
+                    <select name="drink" cf-questions="What would you like to drink?">
+                            <option value="water">Water</option>
+                            <option value="juice">Juice</option>
+                            <option value="coffee" selected="">Coffee</option>
+                            <option value="cider">Cider</option>
+                        </select>
+                    </form>
 
                 </div>
+
                 <div className="col-md-5">
                     {/* <form id="form">
                         <input id="cardHolderName" name="cardHolderName" type="text" cf-questions="Hello, please tell me card holder's name?" />
@@ -336,6 +345,7 @@ class PaymentDetails extends Component {
                             <input type="radio" cf-label="yellow" value="yellow" id="3" />
                         </fieldset>
                     </form> */}
+                   
                     <div id="cf-context" role="cf-context" cf-context></div>
                 </div>
             </div>
