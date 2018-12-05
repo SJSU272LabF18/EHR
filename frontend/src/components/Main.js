@@ -20,6 +20,8 @@ import DoctorLogin from './Login/doctorLogin';
 import Purpose from './PatientForms/Purpose';
 import dashboard from './PatientForms/dashboard';
 import PatientNavigation from './Navigation/PatientNavigation';
+import EditRegistration from './EditPatientForms/editRegistration';
+import EditEmergencyContact from './EditPatientForms/editEmergencyContact';
 
 
 //Create a Main Component
@@ -33,9 +35,11 @@ class Main extends Component {
                 <Route path="/patient" component={PatientNavigation}/>
                 <Route path="/homepage" component={HomePage}/>
                 <Route path="/doctor" component={Navigation}/>
-                <Route path="/patient-registration" component={Registration}/>
+                <Route path="/patient/registration" component={Registration}/>
+                <Route path="/patient/edit/registration" component={EditRegistration}/>
+                <Route path="/patient/edit/emergency-contact" component={EditEmergencyContact}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
-                <Route path="/emergency-contact" component={EmergencyContact}/>
+                <Route path="/patient/emergency-contact" component={EmergencyContact}/>
                 {/* <Route path="/sidebar" component={sidebar}/> */}
                 <Route path="/doctor/patient-record" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>

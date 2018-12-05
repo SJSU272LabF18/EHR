@@ -31,18 +31,11 @@ var Patient = mongoose.model('patient',{
     phone : {
         type : String 
     },
-    race : {
-        type : String 
-    },
+   
     gender : {
         type : String
     },
-    dob : {
-        type : String 
-    },
-    maritalStatus : {
-        type : String 
-    },
+  
     bloodGroup : {
         type : String
     },

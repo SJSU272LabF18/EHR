@@ -63,6 +63,10 @@ app.post('/payment',paymentController.payment);
 app.get('/getPatients',doctorDashboardController.getpatients);
 app.post('/emergency',emergencyController.emergency);
 app.post('/patientrecord', patientRecordController.record);
+app.get('/registrationdetails',registrationController.registrationDetails)
+app.get('/emergencydetails',emergencyController.emergencyDetails)
+app.put('/editregistration',registrationController.editRegistration)
+app.put('/editemergency',emergencyController.editEmergency)
 
 //start your server on port 3001
 app.listen(3001);
