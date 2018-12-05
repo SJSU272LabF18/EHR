@@ -10,6 +10,8 @@ import Insurance from './PatientForms/Insurance';
 import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
 import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
+import DoctorDashboard from './Dashboard/DoctorDashboard';
+import DownloadForm from './Dashboard/DownloadForm'
 
 
 //Create a Main Component
@@ -21,7 +23,7 @@ class Main extends Component {
                 <Route path="/signup" component={Signup}/>
                 <Route path="/login" component={Login}/>
                 <Route path="/homepage" component={HomePage}/>
-                <Route path="/nav" component={Navigation}/>
+                <Route path="/doctor" component={Navigation}/>
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
@@ -29,6 +31,8 @@ class Main extends Component {
   
                 <Route path="/insurance" component={Insurance}/>
                 <Route path="/sidebar" component={sidebar}/>
+                <Route path="/doctor/dashboard" component={DoctorDashboard}/>
+                <Route path="/download" component={DownloadForm}/>
             </div>
         )
     }
