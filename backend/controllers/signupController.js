@@ -8,16 +8,16 @@ exports.signup = function (req, res) {
       console.log(user);
       if (err){
         console.log("Error in server");
-        res.status(415).send("Error in server");
+        res.status(403).send("Error in server");
       }else {
         if (typeof user == "string") {
-          res.status(415).send(user);
+          res.status(403).send(user);
         }else {
           console.log("Sign Up: ", user);
           var user ={
             "email": user.email,
-            "lname": user.lName,
-            "fname": user.fName
+            "userType": user.isPatient,
+            "name": user.fName + " " + user.lName
           }
           var token = jwt.sign(user, config.secret, {
             expiresIn: 10080 // in seconds
@@ -28,7 +28,7 @@ exports.signup = function (req, res) {
             token: 'JWT ' + token
           }),(err) => {
             console.log("Error in Signup");
-            res.status(415).send("Error in signup");
+            res.status(403).send("Error in signup");
           }
         }
       }

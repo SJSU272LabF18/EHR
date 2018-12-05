@@ -1,10 +1,10 @@
 var { mongoose } = require('./../db/mongoose');
-var { Patient } = require('./../models/patient');
+var { Doctor } = require('./../models/doctor');
 var crypt = require('./../crypt');
 
 function handle_request(data, callback) {
     console.log("In handle request:" + JSON.stringify(data));
-    Patient.findOne({
+    Doctor.findOne({
         email: data.email
     }, function (err, result) {
         if (err) {

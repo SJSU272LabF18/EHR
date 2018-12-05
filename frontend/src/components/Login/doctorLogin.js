@@ -10,7 +10,7 @@ import '../../Homepage.css'
 import logo from './../HomePage/logo.png'
 
 
-class Login extends Component {
+class DoctorLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -63,27 +63,12 @@ class Login extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <div>
-                
-            <div className="col-md-12 backgroundBox background-img">
-            <navbar  style={{position:"absolute", opacity:"0.6", width:"100%"}}>
-                <span id="brand">
-                    <a href="javascript:;"><img src={logo} style={{marginTop:"10px", opacity:"1"}}/></a>
-                </span>
-                <ul id="menu">
-                    <li><a href="javascript:;">HOME</a></li>
-                    <li><a href="javascript:;">SERVICES</a></li>
-                    <li><a href="javascript:;">NEW PATIENT</a></li>
-                    <li><a href="javascript:;">EXISTING PATIENT</a></li>
-                    <li><a href="javascript:;">ADMIN</a></li>
-                </ul>
-                </navbar>
-                <div className="col-md-12">
+            <div >
+                <div className="col-md-12" style = {{margin : "auto"}}>
                     {redirectVar}
-                    <div className="loginBox col-md-12 ">
+                    <div className="doctorloginBox col-md-12 " >
                         <div className="col-md-12" style={{ textAlign: "center" }}>
-                            <h1 style={{ color: "#4ABF91", fontWeight:"bolder" }}> Login </h1>
-                            <h4>Need an account? <Link to="/signup">SignUp</Link></h4>
+                            <h1 style={{ color: "#4ABF91", fontWeight:"bolder" }}> Doctor's Login </h1>
                             <p style={{color:"#ff4848"}}>{this.props.errormsg}</p>
                         </div>
                         <div className="form-group col-md-12">
@@ -108,8 +93,7 @@ class Login extends Component {
                     </div>
                 </div>
             </div>
-            </div >
-            </div>
+            </div > 
         );
     }
 }
@@ -143,7 +127,7 @@ const mapDispatchStateToProps = dispatch => {
                 password: values.password
             }
             axios.defaults.withCredentials = true;
-            axios.post('http://localhost:3001/login', data)
+            axios.post('http://localhost:3001/doctorlogin', data)
                 .then(response => {
                     localStorage.setItem('token', response.data.token)
                     const decoded = jwt_decode(response.data.token)
@@ -163,5 +147,5 @@ const mapDispatchStateToProps = dispatch => {
 export default reduxForm({
     validate,
     form: "login"
-})(connect(mapStateToProps, mapDispatchStateToProps)(Login));
+})(connect(mapStateToProps, mapDispatchStateToProps)(DoctorLogin));
 
