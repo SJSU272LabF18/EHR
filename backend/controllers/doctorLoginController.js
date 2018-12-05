@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken');
 var config = require('./../config/setting');
 var kafka = require('./../kafka/client');
 exports.login = function (req, res) {
-  kafka.make_request('patient_login',req.body, function(err,result){
+  kafka.make_request('doctor_login',req.body, function(err,result){
     console.log('in result');
     console.log(result);
     if (err) {
