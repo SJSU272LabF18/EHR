@@ -19,7 +19,8 @@ class Registration extends Component {
             dob:"",
             mStatus:"",
             bGroup:"",
-            allergy:""
+            allergy:"",
+            onclick : "",
         }
         this.fnameHandler = this.fnameHandler.bind(this);
         this.lnameHandler = this.lnameHandler.bind(this);
