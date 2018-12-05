@@ -8,7 +8,9 @@ import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
 import Insurance from './PatientForms/Insurance';
 import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
-import sidebar from './Sidebar/sidebar';
+
+
+// import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
 
 
@@ -26,9 +28,9 @@ class Main extends Component {
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
                 <Route path="/physical-health" component={PhysicalHealthRecord}/>
-  
+               
                 <Route path="/insurance" component={Insurance}/>
-                <Route path="/sidebar" component={sidebar}/>
+                {/* <Route path="/sidebar" component={sidebar}/> */}
             </div>
         )
     }

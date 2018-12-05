@@ -43,10 +43,7 @@ var Patient = mongoose.model('patient',{
     bloodGroup : {
         type : String
     },
-    allergy : {
-        type : String 
-    },
-
+  
    
 },'patient');
 
