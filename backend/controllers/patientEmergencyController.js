@@ -1,22 +1,16 @@
 var kafka = require('./../kafka/client');
-module.exports.registration = function (req, res) {
+module.exports.emergency = function (req, res) {
     var today = new Date();
     var data = {
+        "fName": req.body.fName,
+        "lName": req.body.lName,
+        "contact":req.body.contact,
+        "relation":req.body.relation,
         "address":req.body.address,
-        "city": req.body.city,
-        "state": req.body.state,
-        "zip":req.body.zip,
-        "email": req.query.email,  
-        "phone": req.body.phone,
-        "diversity":req.body.diversity,
-        "gender":req.body.gender,
-        "dob":req.body.dob,
-        "maritalStatus":req.body.maritalStatus,
-        "bloodGroup":req.body.bloodGroup,
-        "allergy":req.body.allergy,   
+        "userEmail" : req.query.userEmail,
         "created_at": today,
     }
-    kafka.make_request('patient_registration'
+    kafka.make_request('patient_emergency'
     , data, function (err, result) {
       console.log("inside");
       if (typeof result == "string") {
