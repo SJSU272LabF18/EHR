@@ -15,7 +15,7 @@ class Insurance extends Component {
             subscriberAddress: "",
             subscriberSSN: "",
             relation: "",
-            emplName:"",
+            emplName: "", 
             onResponse:""
         }
         this.insuranceNameHandler = this.insuranceNameHandler.bind(this);
@@ -32,25 +32,21 @@ class Insurance extends Component {
     insuranceNameHandler = (e) => {
         this.setState({
             insuranceName: e.target.value,
-           
         });
     }
     effectiveDateHandler = (e) => {
         this.setState({
             effectiveDate: e.target.value,
-           
         });
     }
     claimAddressHandler = (e) => {
         this.setState({
             claimAddress: e.target.value,
-           
         });
     }
     subscriberIdHandler = (e) => {
         this.setState({
-            subscriberId: e.target.value,
-           
+            subscriberId: e.target.value,          
         });
     }
     groupNumberHandler = (e) => {
@@ -187,5 +183,6 @@ class Insurance extends Component {
     }
 }
     
+
 
 export default Insurance;

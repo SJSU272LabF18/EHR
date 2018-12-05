@@ -44,10 +44,14 @@ app.use(function(req, res, next) {
 // var signupController=require('./controllers/signupController');
 var loginController=require('./controllers/loginController');
 var signupController=require('./controllers/signupController');
+var registrationController=require('./controllers/patientRegistrationController');
+var paymentController=require('./controllers/paymentController');
 //route to handle user registration
 // app.post('/signup',signupController.signup);
 app.post('/login',loginController.login);
 app.post('/signup',signupController.signup);
+app.post('/registration',registrationController.registration);
+app.post('/payment',paymentController.payment);
 //start your server on port 3001
 app.listen(3001);
 console.log("Server Listening on port 3001")

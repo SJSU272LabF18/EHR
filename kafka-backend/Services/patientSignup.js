@@ -33,7 +33,7 @@ function handle_request(data, callback){
                     console.log("Sign Up: ", user);
                     callback(null,user);
                   }, (err) => {
-                    console.log("Error in Signup");
+                    console.log(err);
                     callback(null,[]);
                   })
                 })

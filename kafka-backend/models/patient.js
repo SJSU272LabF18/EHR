@@ -13,6 +13,40 @@ var Patient = mongoose.model('patient',{
     password : {
         type : String 
     },
+    address : {
+        type : String 
+    },
+    city : {
+        type : String 
+    },
+    state : {
+        type : String
+    },
+    zipcode : {
+        type : String 
+    },
+    phone : {
+        type : String 
+    },
+    race : {
+        type : String 
+    },
+    gender : {
+        type : String
+    },
+    dob : {
+        type : String 
+    },
+    maritalStatus : {
+        type : String 
+    },
+    bloodGroup : {
+        type : String
+    },
+    allergy : {
+        type : String 
+    },
+
    
 },'patient');
 

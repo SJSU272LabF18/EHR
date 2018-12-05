@@ -69,7 +69,7 @@
   height:auto;
   width: 100%;
   margin-bottom: 20px;
-  padding-bottom: 20px
+  padding-bottom: 20px;
 }
 
 .transparent {
@@ -90,3 +90,13 @@
   color:#65CDA4;
   font-size: 30px;
 }
+
+* #cf-context { 
+  width: 90%; 
+  height: 100vh; 
+}
+#form {
+  /* height: 0px; */
+  overflow: hidden;
+
+} 
