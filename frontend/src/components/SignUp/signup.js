@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import jwt_decode from 'jwt-decode';
 import '../../App.css';
-
+import '../../Homepage.css'
+import logo from './../HomePage/logo.png'
 
 class Login extends Component {
      constructor(props) {
@@ -78,6 +79,18 @@ class Login extends Component {
         return (
             <div>
             <div className="col-md-12 backgroundBox background-img" > </div>
+            <navbar  style={{position:"absolute", opacity:"0.6", width:"100%"}}>
+                <span id="brand">
+                    <a href="javascript:;"><img src={logo} style={{marginTop:"10px", opacity:"1"}}/></a>
+                </span>
+                <ul id="menu">
+                    <li><a href="javascript:;">HOME</a></li>
+                    <li><a href="javascript:;">SERVICES</a></li>
+                    <li><a href="javascript:;">NEW PATIENT</a></li>
+                    <li><a href="javascript:;">EXISTING PATIENT</a></li>
+                    <li><a href="javascript:;">ADMIN</a></li>
+                </ul>
+                </navbar>
             <div className="col-md-12">
                 {redirectVar}
                 <div className="signupBox col-md-12" >

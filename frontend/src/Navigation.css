@@ -1,0 +1,49 @@
+nav {
+    background: #012533;
+    height: 50px;
+    z-index: 1;
+  }
+  
+  nav #brandnav {
+    float: left;
+    display: block;
+    margin-left: 20px;
+    font-size: 10px;
+    line-height: 10px;
+    font-weight: bold;
+  }
+  
+  nav #brandnav a {
+    color: #fff;
+    transition: all 0.3s ease-out;
+  }
+  
+  nav #brandnav a:hover {
+    color: #777777;
+  }
+  
+  nav #menunav {
+    float: right;
+    position: relative;
+  }
+  
+  nav #menunav li {
+    display: inline-block;
+    padding: 0px 30px;
+    cursor: pointer;
+    line-height: 50px;
+    position: relative;
+    transition: all 0.3s ease-out;
+    font-size: 12px;
+    font-family:Lato, sans-serif;
+  }
+  
+  nav #menunav li a {
+    color: #fff;
+  }
+  
+  nav #menunav li a:hover {
+    color:#089AD5;
+  }
+  
+  

@@ -6,10 +6,12 @@ import Navigation from './Navigation/Navigation';
 import Registration from './PatientForms/Registration';
 import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
-import Connection from './connection';
+
 import Insurance from './PatientForms/Insurance';
-import MedicalHistory from './PatientForms/MedicalHistory';
 import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
+
+
+import HomePage from './HomePage/HomePage';
 
 //Create a Main Component
 class Main extends Component {
@@ -19,14 +21,16 @@ class Main extends Component {
                 {/*Render Different Component based on Route*/}
                 <Route path="/signup" component={Signup}/>
                 <Route path="/login" component={Login}/>
-                <Route path="/" component={Navigation}/>
+                <Route path="/homepage" component={HomePage}/>
+                <Route path="/nav" component={Navigation}/>
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
-                <Route path="/connection" component={Connection}/>
                 <Route path="/insurance" component={Insurance}/>
-                <Route path="/medical-history" component={MedicalHistory}/>
-                <Route path="/physical-health-record" component={PhysicalHealthRecord}/>
+
+
+                
+
             </div>
         )
     }
