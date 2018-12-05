@@ -40,7 +40,6 @@ class Main extends Component {
                 <Route path="/purpose" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>
 
-                <Route path="/sidebar" component={sidebar}/>
                 <Route path="/doctor/dashboard" component={DoctorDashboard}/>
                 <Route path="/download" component={DownloadForm}/>
                 <Route path="/patient/dashboard" component={dashboard}/>

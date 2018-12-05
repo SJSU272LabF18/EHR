@@ -303,7 +303,7 @@ class Registration extends Component {
         axios.post('http://localhost:3001/registration', data,
         {
             params:{
-                email: patient_email
+                email: localStorage.getItem('email')
             }
         })
             .then(response => {
