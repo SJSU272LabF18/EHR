@@ -1,0 +1,28 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+  }
+  
+  .drawArea {
+    margin-left: 15%;
+    margin-top: 5%;
+    background-image: url("pain-diagram.jpg");
+    width: 800px;
+    height: 480px;
+    border: 1px solid black;
+    float: left;
+    cursor: crosshair;
+  }
+  
+  .path {
+    fill: none;
+    stroke-width: 5px;
+    stroke: rgb(40, 10, 122);
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  
+  .drawing {
+    width: 100%;
+    height: 100%;
+  }

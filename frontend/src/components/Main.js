@@ -15,7 +15,7 @@ import DoctorLogin from './Login/doctorLogin';
 
 import Purpose from './PatientForms/Purpose';
 import dashboard from './PatientForms/dashboard';
-
+import PainDiagram from './PatientForms/PainDiagram';
 
 //Create a Main Component
 class Main extends Component {
@@ -36,6 +36,7 @@ class Main extends Component {
                 <Route path="/insurance" component={Insurance}/>
                 <Route path="/sidebar" component={sidebar}/>
                 <Route path="/dashboard" component={dashboard}/>
+                <Route path="/pain-diagram" component={PainDiagram}/>
             </div>
         )
     }
