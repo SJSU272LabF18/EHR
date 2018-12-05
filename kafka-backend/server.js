@@ -7,6 +7,7 @@ var Login = require('./Services/patientLogin.js');
 var Signup = require('./Services/patientSignup.js');
 var Registration = require('./Services/patientRegistration.js');
 var Payment = require('./Services/patientPayment.js');
+var DoctorLogin = require('./Services/doctorLogin')
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -45,3 +46,4 @@ handleTopicRequest("patient_login",Login)
 handleTopicRequest("patient_signup",Signup)
 handleTopicRequest("patient_registration",Registration)
 handleTopicRequest("patient_payment",Payment)
+handleTopicRequest("doctor_login",DoctorLogin)

@@ -13,6 +13,9 @@ var Patient = mongoose.model('patient',{
     password : {
         type : String 
     },
+    isPatient :{
+        type : String 
+    },
     address : {
         type : String 
     },

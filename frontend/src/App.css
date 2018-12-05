@@ -25,6 +25,16 @@
   left: 52%
 }
 
+.doctorloginBox{
+  border: 1px solid transparent;
+  padding: 5px;
+  height: auto;
+  width:35%;
+  margin:auto;
+  top:150px;
+  margin-left: 400px
+}
+
 .backgroundBox{
   position: absolute;
   height: 100%;
