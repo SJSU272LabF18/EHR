@@ -16,7 +16,7 @@ import DownloadForm from './Dashboard/DownloadForm'
 import DoctorLogin from './Login/doctorLogin';
 
 import Purpose from './PatientForms/Purpose';
-
+import dashboard from './PatientForms/dashboard';
 
 
 //Create a Main Component
@@ -39,6 +39,7 @@ class Main extends Component {
                 <Route path="/sidebar" component={sidebar}/>
                 <Route path="/doctor/dashboard" component={DoctorDashboard}/>
                 <Route path="/download" component={DownloadForm}/>
+                <Route path="/dashboard" component={dashboard}/>
             </div>
         )
     }
