@@ -7,8 +7,10 @@ import Registration from './PatientForms/Registration';
 import PaymentDetails from './PatientForms/PaymentDetails';
 import EmergencyContact from './PatientForms/EmergencyContact';
 import Insurance from './PatientForms/Insurance';
-import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
-import sidebar from './Sidebar/sidebar';
+
+
+
+// import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
 import DoctorDashboard from './Dashboard/DoctorDashboard';
 import DownloadForm from './Dashboard/DownloadForm'
@@ -34,14 +36,16 @@ class Main extends Component {
                 <Route path="/patient-registration" component={Registration}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
-                <Route path="/physical-health" component={PhysicalHealthRecord}/>
+                {/* <Route path="/sidebar" component={sidebar}/> */}
                 <Route path="/purpose" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>
+
                 <Route path="/sidebar" component={sidebar}/>
                 <Route path="/doctor/dashboard" component={DoctorDashboard}/>
                 <Route path="/download" component={DownloadForm}/>
                 <Route path="/patient/dashboard" component={dashboard}/>
                 <Route path="/doctor/login" component={DoctorLogin}/>
+
             </div>
         )
     }

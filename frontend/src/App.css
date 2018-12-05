@@ -76,13 +76,62 @@
 
 }
 
-.form-box{
-  border:transparent;
-  height:auto;
-  width: 100%;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+
+input[type=text] {
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  height:45.1px
 }
+input[type=date] {
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  height:45px
+}
+
+
+
+.icon-input{
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  height:46px;
+  
+}
+
+.radio-group-box{
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  height:45px;
+  padding:10px;
+}
+
 
 .transparent {
   background-color: transparent !important;
@@ -90,7 +139,7 @@
 }
 .right-border-none {
   border-right:none !important;
-  box-shadow: inset 0px 1px 0 rgba(0,0,0,.075);
+  box-shadow: inset 0px 1px 0 rgba(255, 115, 115, 0.075);
 }
 .icon-size{
   font-size:20px;
@@ -99,8 +148,31 @@
 
 .form-heading{
   text-align: center;
-  color:#65CDA4;
+  color:#ffffff;
   font-size: 30px;
+}
+
+.form-heading-box{
+  margin-top:0px;
+  background-color:#143D66;
+  height: 60px;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.form-box{
+  border:1px solid #9EA1A4;
+  height:auto;
+  margin-bottom: 30px;
+  padding: 0px;
+  margin-top: 30px;
+  border-radius: 15px;
+  margin-left:15px;
+}
+
+
+.content-box{
+  margin:10px;
+  padding: 10px 5px 50px 5px;
 }
 
 * #cf-context { 

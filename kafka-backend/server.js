@@ -7,8 +7,12 @@ var Login = require('./Services/patientLogin.js');
 var Signup = require('./Services/patientSignup.js');
 var Registration = require('./Services/patientRegistration.js');
 var Payment = require('./Services/patientPayment.js');
+
+var Emergency = require('./Services/patientEmergency')
+
 var DoctorLogin = require('./Services/doctorLogin')
 var GetPatients = require('./Services/getpatients')
+
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -19,7 +23,7 @@ function handleTopicRequest(topic_name,fname){
         console.log('message received for ' + topic_name +" ", fname);
         console.log(JSON.stringify(message.value));
         var data = JSON.parse(message.value);
-        
+
         fname.handle_request(data.data, function(err,res){
             console.log('after handle'+res);
             var payloads = [
@@ -36,7 +40,7 @@ function handleTopicRequest(topic_name,fname){
             });
             return;
         });
-        
+
     });
 }
 // Add your TOPICs here
@@ -47,5 +51,9 @@ handleTopicRequest("patient_login",Login)
 handleTopicRequest("patient_signup",Signup)
 handleTopicRequest("patient_registration",Registration)
 handleTopicRequest("patient_payment",Payment)
+
 handleTopicRequest("doctor_login",DoctorLogin)
 handleTopicRequest("get_patients",GetPatients)
+
+handleTopicRequest("patient_emergency",Emergency)
+handleTopicRequest("doctor_login",DoctorLogin)
