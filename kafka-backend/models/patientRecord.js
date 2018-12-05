@@ -80,6 +80,9 @@ var PatientRecord = mongoose.model('patientrecord', {
     bodyTemp: {
         type: String
     },
+    diagnosisResult: {
+        type: String
+    },
     created_at : {
         type : Date 
     }    

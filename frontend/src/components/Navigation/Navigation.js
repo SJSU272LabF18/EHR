@@ -35,6 +35,8 @@ class Navbar extends Component {
         })
     }
 
+    
+
     render() {
         let navbar = null
 
@@ -49,17 +51,30 @@ class Navbar extends Component {
                         <ul id="menunav">
                             <li><a href="/doctor/dashboard">HOME</a></li>
                             <li><a href="javascript:;">SERVICES</a></li>
-                            <li onClick={this.handleLogout}><a >Logout</a></li>
+                            <li onClick={this.handleLogout}><a >LOGOUT</a></li>
                         </ul>
                     </nav>
                     <SideNav
                         onSelect={(selected) => {
-                            console.log(selected)
+                            let detailPage = null
+                            if(selected == "home"){
+                                detailPage = this.props.history.push({
+                                    pathname: "/doctor/dashboard",
+                                    state: {
+                                    }
+                                })
+                            }else{
+                                detailPage = this.props.history.push({
+                                    pathname: "/doctor/analysis",
+                                    state: {
+                                    }
+                                })
+                            }
                         }}
                     >
                         <SideNav.Toggle />
                         <SideNav.Nav defaultSelected="home">
-                            <NavItem eventKey="home">
+                            <NavItem eventKey="home" >
                                 <NavIcon>
                                     <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
                                 </NavIcon>
@@ -67,12 +82,12 @@ class Navbar extends Component {
                                     Home
                                 </NavText>
                             </NavItem>
-                            <NavItem eventKey="charts">
+                            <NavItem eventKey="analysis" >
                                 <NavIcon>
                                     <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
                                 </NavIcon>
                                 <NavText>
-                                    Charts
+                                    Analysis
                                 </NavText>
                             </NavItem>
                         </SideNav.Nav>
@@ -90,7 +105,7 @@ class Navbar extends Component {
                         <ul id="menunav">
                             <li><a href="/homepage">HOME</a></li>
                             <li><a href="javascript:;">SERVICES</a></li>
-                            <li><a href="/login">Login</a></li>
+                            <li><a href="/login">LOGIN</a></li>
                         </ul>
                 </nav>
             )

@@ -13,7 +13,10 @@ import Insurance from './PatientForms/Insurance';
 // import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
 import DoctorDashboard from './Dashboard/DoctorDashboard';
-import DownloadForm from './Dashboard/DownloadForm'
+import AllPrescriptions from './Dashboard/AllPrescriptions';
+import ViewPurpose from './Dashboard/ViewPurpose';
+import DownloadForm from './Dashboard/DownloadForm';
+import AdminGraph from './Dashboard/AdminGraphs';
 
 import DoctorLogin from './Login/doctorLogin';
 
@@ -48,6 +51,9 @@ class Main extends Component {
                 <Route path="/download" component={DownloadForm}/>
                 <Route path="/patient/dashboard" component={dashboard}/>
                 <Route path="/doctor/login" component={DoctorLogin}/>
+                <Route path="/doctor/allprescriptions" component={AllPrescriptions}/>
+                <Route path="/doctor/viewprescription" component={ViewPurpose}/>
+                <Route path="/doctor/analysis" component={AdminGraph}/>
 
             </div>
         )

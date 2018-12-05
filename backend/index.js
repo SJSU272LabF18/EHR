@@ -61,6 +61,9 @@ app.post('/registration',registrationController.registration);
 app.post('/payment',paymentController.payment);
 
 app.get('/getPatients',doctorDashboardController.getpatients);
+app.get('/getPrescriptions',doctorDashboardController.getprescriptions);
+app.get('/getpatientstatistics',doctorDashboardController.getpatientstatistics);
+app.get('/getstatisticsbydiagnosis',doctorDashboardController.getstatisticsbydiagnosis);
 app.post('/emergency',emergencyController.emergency);
 app.post('/patientrecord', patientRecordController.record);
 app.get('/registrationdetails',registrationController.registrationDetails)

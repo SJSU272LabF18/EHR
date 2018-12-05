@@ -2,6 +2,7 @@ var kafka = require('./../kafka/client');
 module.exports.record = function (req, res) {
     var today = new Date();
     var data = {
+        "patientEmail": req.body.patientEmail,
         "purpose": req.body.purpose,
         "allergy": req.body.allergy,
         "date": req.body.date,
@@ -27,6 +28,7 @@ module.exports.record = function (req, res) {
         "sugarLevel": req.body.sugarLevel,
         "heartRate": req.body.heartRate,
         "bodyTemp": req.body.bodyTemp,
+        "diagnosisResult": req.body.diagnosisResult,
         "created_at": today,
     }
     kafka.make_request('patient_record'
