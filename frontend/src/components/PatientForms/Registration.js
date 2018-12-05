@@ -17,10 +17,8 @@ class Registration extends Component {
             diversity:"",
             gender:"",
             dob:"",
-            mStatus:"",
-            bGroup:"",
-            allergy:"",
             onclick : "",
+            bloodGroup:"",
         }
         this.fnameHandler = this.fnameHandler.bind(this);
         this.lnameHandler = this.lnameHandler.bind(this);
@@ -37,7 +35,189 @@ class Registration extends Component {
         this.allergyHandler = this.allergyHandler.bind(this);
         this.submitRegistration = this.submitRegistration.bind(this);
     }
+
+    componentDidMount() {
+        var dispatcher = new window.cf.EventDispatcher(),
+            synth = null,
+            recognition = null,
+            msg = null,
+            SpeechSynthesisUtterance = null,
+            SpeechRecognition = null;
+
+        try {
+            SpeechRecognition = SpeechRecognition || window.webkitSpeechRecognition;
+        } catch (e) {
+            console.log(
+                "Example support range: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition#Browser_compatibility"
+            );
+        }
+
+        try {
+            SpeechSynthesisUtterance =
+                window.webkitSpeechSynthesisUtterance ||
+                window.mozSpeechSynthesisUtterance ||
+                window.msSpeechSynthesisUtterance ||
+                window.oSpeechSynthesisUtterance ||
+                window.SpeechSynthesisUtterance;
+        } catch (e) {
+            console.log(
+                "Example support range: https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance#Browser_compatibility"
+            );
+        }
+
+        // here we use https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API
+        // you can use what ever API you want, ex.: Google Cloud Speech API -> https://cloud.google.com/speech/
+
+        // here we create our input
+        if (SpeechSynthesisUtterance && SpeechRecognition) {
+            var microphoneInput = {
+                init: function () {
+                    // init is called one time, when the custom input is instantiated.
+
+                    // load voices \o/
+                    synth = window.speechSynthesis;
+                    msg = new SpeechSynthesisUtterance();
+                    window.speechSynthesis.onvoiceschanged = function (e) {
+                        var voices = synth.getVoices();
+                        msg.voice = voices[0]; // <-- Alex
+                        msg.lang = msg.voice.lang; // change language here
+                    };
+                    synth.getVoices();
+
+                    // here we want to control the Voice input availability, so we don't end up with speech overlapping voice-input
+                    msg.onstart = function (event) {
+                        // on message end, so deactivate input
+                        console.log("voice: deactivate 1");
+                        conversationalForm.userInput.deactivate();
+                    };
+
+                    msg.onend = function (event) {
+                        // on message end, so reactivate input
+                        conversationalForm.userInput.reactivate();
+                    };
+
+                    // setup events to speak robot response
+                    dispatcher.addEventListener(
+                        window.cf.ChatListEvents.CHATLIST_UPDATED,
+                        function (event) {
+                            if (event.detail.currentResponse.isRobotResponse) {
+                                // https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance
+                                // msg.text = event.detail.currentResponse.response
+                                msg.text = event.detail.currentResponse.strippedSesponse; //<-- no html tags
+                                window.speechSynthesis.speak(msg);
+                            }
+                        },
+                        false
+                    );
+
+                    // do other init stuff, like connect with external APIs ...
+                },
+                // set awaiting callback, as we will await the speak in this example
+                awaitingCallback: true,
+                cancelInput: function () {
+                    console.log("voice: CANCEL");
+                    window.finalTranscript = null;
+                    if (recognition) {
+                        recognition.onend = null;
+                        recognition.onerror = null;
+                        recognition.stop();
+                    }
+                },
+                input: function (resolve, reject, mediaStream) {
+                    console.log("voice: INPUT");
+                    // input is called when user is interacting with the CF input button (UserVoiceInput)
+
+                    // connect to Speech API (ex. Google Cloud Speech), Watson (https://github.com/watson-developer-cloud/speech-javascript-sdk) or use Web Speech API (like below), resolve with the text returned..
+                    // using Promise pattern -> https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise
+                    // if API fails use reject(result.toString())
+                    // if API succedes use resolve(result.toString())
+
+                    if (recognition) recognition.stop();
+
+                    recognition = new SpeechRecognition()
+                    window.finalTranscript = "";
+
+                    recognition.continuous = false; // react only on single input
+                    recognition.interimResults = false; // we don't care about interim, only final.
+
+                    // recognition.onstart = function() {}
+                    recognition.onresult = function (event) {
+                        // var interimTranscript = "";
+                        for (var i = event.resultIndex; i < event.results.length; ++i) {
+                            if (event.results[i].isFinal) {
+                                window.finalTranscript += event.results[i][0].transcript;
+                                console.log(event.results[i][0].transcript)
+                                console.log(mediaStream)
+                            }
+                        }
+                    };
+
+                    recognition.onerror = function (event) {
+                        reject(event.error);
+                    };
+
+                    recognition.onend = function (event) {
+                        if (window.finalTranscript && window.finalTranscript !== "") {
+                            resolve(window.finalTranscript);
+                        }
+                    };
+
+                    recognition.start();
+                }
+            };
+        }
+
+        var finalData = null
+        let my = this
+        var conversationalForm = window.cf.ConversationalForm.startTheConversation({
+            formEl: document.getElementById("form"),
+            context: document.getElementById("cf-context"),
+            eventDispatcher: dispatcher,
+
+            // add the custom input (microphone)
+            microphoneInput: microphoneInput,
+
+
+            submitCallback: function () {
+                // remove Conversational Form
+                console.log(
+                    "voice: Form submitted...",
+                    conversationalForm.getFormData(true)
+                );
+                finalData = conversationalForm.getFormData(true)
+                my.setState({
+                    address: finalData.address,
+                    fName: finalData.fname,
+                    lName: finalData.lname,
+                    city: finalData.city,
+                    gender: finalData.gender[0],
+                    phone: finalData.phone,
+                    state: finalData.state,
+                    zip: finalData.zip
+                })
+
+                alert("You made it! Check console for data");
+            }
+        });
+
+        if (!SpeechRecognition) {
+            conversationalForm.addRobotChatResponse(
+                "SpeechRecognition not supported, so <strong>no</strong> Microphone here."
+            );
+        }
+
+        if (!SpeechSynthesisUtterance) {
+            conversationalForm.addRobotChatResponse(
+                "SpeechSynthesisUtterance not supported, so <strong>no</strong> Microphone here."
+            );
+        }
+
+    }
+
+
+
     fnameHandler = (e) => {
+        console.log("fname:", e.target.value)
         this.setState({
             fName:e.target.value
           });
@@ -105,9 +285,10 @@ class Registration extends Component {
 
     submitRegistration = (e) => {
         var headers = new Headers();
-        let patient_email = localStorage.getItem("decoded_email");
+        // let patient_email = localStorage.getItem("decoded_email");
+        let patient_email = "pranalibhavsar139@gmail.com"
         e.preventDefault();
-        const data = { 
+        const data = {
             address: this.state.address,
             city: this.state.city,
             state:this.state.state,
@@ -118,7 +299,7 @@ class Registration extends Component {
             dob:this.state.dob,
             maritalStatus:this.state.maritalStatus,
             bloodGroup:this.state.bloodGroup,
-            allergy:this.state.allergy     
+            allergy:this.state.allergy
         }
         console.log(data)
         axios.defaults.withCredentials = true;
@@ -135,7 +316,7 @@ class Registration extends Component {
                         onclick: true,
                         resultmsg: "Patient Registered Successfully"
                     })
-                       
+
                 } else {
                     this.setState({
                         onclick: false
@@ -154,182 +335,150 @@ class Registration extends Component {
     render(){
         let loginroute = null;
         let nextPage = null;
-        let patient_email = localStorage.getItem("decoded_email");
-        if (patient_email == null) {
-            loginroute = <Redirect to="/login" />
-        }
+        // let patient_email = localStorage.getItem("decoded_email");
+        // if (patient_email == null) {
+        //     loginroute = <Redirect to="/login" />
+        // }
         if(this.state.onclick){
             nextPage = <Redirect to="/" />
         }
         return(
-            <div className="container" >
+            <div className="col-md-12" >
                 {loginroute}
                 {nextPage}
-                <div className="col-md-12 form-box">
-                    <div className="col-md-12">
+                <div className="col-md-6 form-box">
+
+                    <div className="col-md-12 form-heading-box">
                         <h2 className="form-heading">Patient Registration</h2>
-                        < hr/>
+
                     </div>
-                    <div className="col-md-12" >
-                    <form role="form" onSubmit={this.submitRegistration}>
-                           
-                            <div class="col-md-12">
-                            <div class=" form-group col-md-6">
+                    <div className="col-md-12 content-box" >
+                    <form role="form" onSubmit={this.submitRegistration} id="form">
+
+                    <div class="col-md-12">
+                            <div class=" form-group col-md-12">
                             <label>First Name</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="First Name" type="text" name="fname" onChange={this.fnameHandler} defaultValue={this.state.fName}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control right-border-none" placeholder="First Name" type="text" name="fname" cf-questions="Hello, please tell me your first name." onChange={this.fnameHandler} defaultValue={this.state.fName}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
+                        </div>
 
-                            <div class=" form-group col-md-6">
+                        <div class="col-md-12">
+                            <div class=" form-group col-md-12">
                             <label>Last Name</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="Last Name" type="text" name="lname" onChange={this.lnameHandler} defaultValue={this.state.lName}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control right-border-none" placeholder="Last Name" type="text" name="lname" cf-questions="Ohkay {fname}, please tell me your last name." onChange={this.lnameHandler} defaultValue={this.state.lName}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
-                            </div>
+                        </div>
 
                             <div class="col-md-12">
                             <div class="form-group col-md-12">
                             <label>Address</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon home"></span></span>
-                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" onChange={this.addressHandler} defaultValue={this.state.address}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
+                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" cf-questions="{fname} now, please tell me your address." onChange={this.addressHandler} defaultValue={this.state.address}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
                             </div>
 
                             <div class="col-md-12">
-                            <div class=" form-group col-md-4">
+                            <div class=" form-group col-md-6">
                             <label>City</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon home"></span></span>
-                                <input class="form-control right-border-none" placeholder="City" type="text" name="city" onChange={this.cityHandler} defaultValue={this.state.city}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
+                                <input class="form-control right-border-none" placeholder="City" type="text" name="city" cf-questions="{fname} Please, tell me your city " onChange={this.cityHandler} defaultValue={this.state.city}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
-                            <div class=" form-group col-md-4">
+                            <div class=" form-group col-md-6">
                             <label>State</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon home"></span></span>
-                                <input class="form-control right-border-none" placeholder="State" type="text" name="state" onChange={this.stateHandler} defaultValue={this.state.state}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                            </div>
-                            </div>
-                            <div class=" form-group col-md-4">
-                            <label>Zip Code</label>
-                            <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon home"></span></span>
-                                <input class="form-control right-border-none" placeholder="Zip Code" type="text" name="zip" onChange={this.zipHandler} defaultValue={this.state.zip}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
+                                <input class="form-control right-border-none" placeholder="State" type="text" name="state" cf-questions="{fname} Please, tell me your state " onChange={this.stateHandler} defaultValue={this.state.state}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
                             </div>
                             </div>
 
                             <div class="col-md-12">
-                            <div class=" form-group col-md-4">
+                            <div class=" form-group col-md-6">
+                            <label>Zip Code</label>
+                            <div class="input-group">
+                                <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
+                                <input class="form-control right-border-none" placeholder="Zip Code" type="text" name="zip" cf-questions="{fname} Please, tell me your zipcode" onChange={this.zipHandler} defaultValue={this.state.zip}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                            </div>
+                            </div>
+                            <div class=" form-group col-md-6">
                             <label>Phone</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="fa fa-address-book"></span></span>
-                                <input class="form-control right-border-none" placeholder="Phone" type="text" name="phone" onChange={this.phoneHandler} defaultValue={this.state.phone}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input"><span class="fa fa-address-book"></span></span>
+                                <input class="form-control right-border-none" placeholder="Phone" type="text" name="phone" cf-questions="{fname} Please, tell me your contact number " onChange={this.phoneHandler} defaultValue={this.state.phone}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
+
                             </div>
-                            <div class=" form-group col-md-4">
-                            <label>Race</label>
-                            <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                                <select aria-label="Please Select" name="race" class="form-control FormSelect_select" onChange={this.raceHandler} defaultValue={this.state.race}>
-                                <option value="noSelection">Please Select</option>
-                                <option value="Native American">Native American</option>
-                                <option value="African American">African American</option>
-                                <option value="Asian">Asian</option>
-                                <option value="Caucasian">Caucasian</option>
-                                <option value="Hispanic">Hispanic</option>
-                                <option value="Other">Other</option>
-                                </select>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                            </div>
-                            </div>
+
+
+
+
                             <div class=" form-group col-md-4">
                             <label>Gender</label>
                             <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon glyphicon-user"></span></span>
-                                <select aria-label="Please Select" name="gender" class="form-control FormSelect_select" onChange={this.genderHandler} defaultValue={this.state.gender}>
-                                <option value="noSelection">Please Select</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                                </select>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
+                                <span class="input-group-addon icon-input "><span class="glyphicon glyphicon-user"></span></span>
+                                <input class="form-control right-border-none" placeholder="Gender" type="text" name="gender" cf-questions="{fname} Please, tell me your gender " onChange={this.genderHandler} defaultValue={this.state.gender}/>
+                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
                             </div>
+                                {/* <fieldset  id="gender" name="gender" cf-questions="Please, choose your gender from following. <span>Male</span>, <span>Female </span>or<span>Other</span>"> */}
+                                    {/* <input type="radio" cf-label="Male" value="Male" id="male" onChange={this.genderHandler} checked={this.state.gender === "Male"} />Male<br/>
+                                    <input type="radio" cf-label="Female" value="Female" id="female" onChange={this.genderHandler}  checked={this.state.gender === "Female"}/>Female<br/>
+                                    <input type="radio" cf-label="Other" value="Other" id="other" onChange={this.genderHandler}   checked={this.state.gender === "Other"} />Other */}
+                                {/* </fieldset> */}
+                            </div>
+                        </div>
+
+
+                            <div class="col-md-12">
+
+                            <div class=" form-group col-md-12">
+                            <label>Blood Group:</label>
+
+                             <fieldset  id="bloodgroup" name="bloodgroup" cf-questions="Please, choose your blood group from following. <span>A+</span>, <span>A- </span>,<span>B+</span>, <span>B-</span>,<span>O+</span>,<span>O-</span>,<span>AB+</span> or <span>AB-</span> ">
+                                    <input  type="radio" cf-label="A+" value="A+" id="A+" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "A+"} /><span style={{marginRight:"35px"}}>A+ </span>
+                                    <input  type="radio" cf-label="A-" value="A-" id="A-" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "A-"}/> <span style={{marginRight:"35px"}}>A- </span>
+                                    <input  type="radio" cf-label="B+" value="B+" id="B+" onChange={this.bloodGroupHandler}   checked={this.state.bloodGroup === "B+"} /> <span style={{marginRight:"35px"}}>B+ </span>
+                                    <input  type="radio" cf-label="B-" value="B-" id="B-" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "B-"} /><span style={{marginRight:"35px"}}>B- </span>
+                                    <input  type="radio" cf-label="O+" value="O+" id="O+" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "O+"}/> <span style={{marginRight:"35px"}}>O+ </span>
+                                    <input  type="radio" cf-label="O-" value="O-" id="O-" onChange={this.bloodGroupHandler}   checked={this.state.bloodGroup === "O-"} /> <span style={{marginRight:"35px"}}>O- </span>
+                                    <input  type="radio" cf-label="AB+" value="AB+" id="AB+" onChange={this.bloodGroupHandler} checked={this.state.bloodGroup === "AB+"} /> <span style={{marginRight:"35px"}}>AB+ </span>
+                                    <input  type="radio" cf-label="AB-" value="AB-" id="AB-" onChange={this.bloodGroupHandler}  checked={this.state.bloodGroup === "AB-"}/> <span style={{marginRight:"35px"}}>AB- </span>
+
+                                </fieldset>
+                            </div>
+                            </div>
+                            <div className="col-md-12">
+                            <div className="col-md-5"></div>
+                            <div className="col-md-3">
+                                <button style={{marginTop:"20px"}}type="submit" className="btn btn-success btn-lg">Submit</button>
                             </div>
                             </div>
 
-                            <div class="col-md-12">
-                            <div class=" form-group col-md-4">
-                            <label>DOB</label>
-                            <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon calendar"></span></span>
-                                <input class="form-control right-border-none" placeholder="Date of Birth" type="date" name="dob" onChange={this.dobHandler} defaultValue={this.state.dob}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                            </div>
-                            </div>
-                            <div class=" form-group col-md-4">
-                            <label>Marital Status</label>
-                            <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon marriage"></span></span>
-                                <select aria-label="Please Select" name="maritalStatus" class="form-control FormSelect_select" onChange={this.maritalStatusHandler} defaultValue={this.state.maritalStatus}>
-                                <option value="noSelection">Please Select</option>
-                                <option value="Married">Married</option>
-                                <option value="Unmarried">Unmarried</option>
-                                <option value="Divorcee">Divorcee</option>
-                                </select>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                            </div>
-                            </div>
-                            <div class=" form-group col-md-4">
-                            <label>Blood Group</label>
-                            <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon syringe-empty"></span></span>
-                                <select aria-label="Please Select" name="bloodGroup" class="form-control FormSelect_select" onChange={this.bloodGroupHandler} defaultValue={this.state.bloodGroup}>
-                                <option value="noSelection">Please Select</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                </select>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                            </div>
-                            </div>
-                            </div>
-                            
-                            <div class="col-md-12">
-                            <div class="form-group col-md-12">
-                            <label>Allergy</label>
-                            <div class="input-group">
-                                <span class="input-group-addon "><span class="glyphicon no-symbol"></span></span>
-                                <input class="form-control right-border-none" placeholder="Allergy" type="text" name="allergy" onChange={this.allergyHandler} defaultValue={this.state.allergy}/>
-                                <span class="input-group-addon transparent"><i class="fa fa-microphone icon-size"></i></span>
-                            </div>
-                            </div>
-                            </div>
-                            <div className="col-md-4"></div>
-                            <div className="col-md-3">
-                                <button type="submit" className="btn btn-success btn-lg">Submit</button>
-                            </div>  
                     </form>
                     </div>
                 </div>
+
+
+                <div className="col-md-5">
+                    <div id="cf-context" role="cf-context" cf-context></div>
+                </div>
+
             </div>
         )
     }
