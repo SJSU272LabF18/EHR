@@ -51,7 +51,7 @@ var emergencyController = require('./controllers/patientEmergencyController');
 
 var doctorloginController = require('./controllers/doctorLoginController')
 var doctorDashboardController = require('./controllers/DoctorDashboardController')
-
+var patientRecordController = require('./controllers/patientRecordController')
 //route to handle user registration
 // app.post('/signup',signupController.signup);
 app.post('/login',loginController.login);
@@ -62,6 +62,7 @@ app.post('/payment',paymentController.payment);
 
 app.get('/getPatients',doctorDashboardController.getpatients);
 app.post('/emergency',emergencyController.emergency);
+app.post('/patientrecord', patientRecordController.record);
 
 //start your server on port 3001
 app.listen(3001);
