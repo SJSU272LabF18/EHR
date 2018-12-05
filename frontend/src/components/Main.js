@@ -10,6 +10,7 @@ import Insurance from './PatientForms/Insurance';
 import PhysicalHealthRecord from './PatientForms/PhysicalHealthRecord';
 import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
+import Purpose from './PatientForms/Purpose';
 
 
 //Create a Main Component
@@ -26,7 +27,7 @@ class Main extends Component {
                 <Route path="/payment-details" component={PaymentDetails}/>
                 <Route path="/emergency-contact" component={EmergencyContact}/>
                 <Route path="/physical-health" component={PhysicalHealthRecord}/>
-  
+                <Route path="/purpose" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>
                 <Route path="/sidebar" component={sidebar}/>
             </div>
