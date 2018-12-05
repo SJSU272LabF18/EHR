@@ -6,11 +6,11 @@ module.exports.getpatients = function (req, res) {
         'pageNo': req.query.pageNo,
         'patientName': req.query.patientName
     }
-    kafka.make_request('get_patients', request, function (err, properties) {       
+    kafka.make_request('get_patients', request, function (err, properties) {
         if (err) {
             res.status(400);
             res.send(err);
-        }else{
+        } else {
             console.log(properties)
             res.writeHead(200, {
                 'Content-Type': 'application/json'
@@ -27,11 +27,11 @@ module.exports.getprescriptions = function (req, res) {
         'pageNo': req.query.pageNo,
         'patientEmail': req.query.patientEmail
     }
-    kafka.make_request('get_prescriptions', request, function (err, properties) {       
+    kafka.make_request('get_prescriptions', request, function (err, properties) {
         if (err) {
             res.status(400);
             res.send(err);
-        }else{
+        } else {
             console.log(properties)
             res.writeHead(200, {
                 'Content-Type': 'application/json'
@@ -42,21 +42,41 @@ module.exports.getprescriptions = function (req, res) {
     });
 }
 
-module.exports.getpatientstatistics = function (req, res){
+module.exports.getpatientstatistics = function (req, res) {
     var data = {
         "email": req.query.email,
-      }
-      kafka.make_request('get_patientstatistics', data, function (err, jobs) {
+    }
+    kafka.make_request('get_patientstatistics', data, function (err, jobs) {
         if (err) {
-          res.status(400);
-          res.send(err);
+            res.status(400);
+            res.send(err);
         } else {
-          console.log(jobs)
-          res.writeHead(200, {
-            'Content-Type': 'application/json'
-          });
-          res.end(JSON.stringify(jobs));
+            console.log(jobs)
+            res.writeHead(200, {
+                'Content-Type': 'application/json'
+            });
+            res.end(JSON.stringify(jobs));
         }
-    
-      });
-  }
+
+    });
+}
+
+
+module.exports.getstatisticsbydiagnosis = function (req, res) {
+    var data = {
+        "email": req.query.email,
+    }
+    kafka.make_request('get_statisticsbydiagnosis', data, function (err, jobs) {
+        if (err) {
+            res.status(400);
+            res.send(err);
+        } else {
+            console.log(jobs)
+            res.writeHead(200, {
+                'Content-Type': 'application/json'
+            });
+            res.end(JSON.stringify(jobs));
+        }
+
+    });
+}

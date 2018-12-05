@@ -15,6 +15,7 @@ var GetPatients = require('./Services/getpatients')
 var PatientRecord = require('./Services/patientRecord');
 var GetPrescriptions = require('./Services/getprescriptions');
 var GetPatientStatistics = require('./Services/getpatientstatistics');
+var GetStatisticsByDiagnosis = require('./Services/getstatisticsbydiagnosis');
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -60,3 +61,4 @@ handleTopicRequest("get_prescriptions",GetPrescriptions)
 handleTopicRequest("patient_emergency",Emergency)
 handleTopicRequest("patient_record",PatientRecord)
 handleTopicRequest("get_patientstatistics",GetPatientStatistics)
+handleTopicRequest("get_statisticsbydiagnosis",GetStatisticsByDiagnosis)
