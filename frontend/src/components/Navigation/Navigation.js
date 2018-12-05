@@ -24,11 +24,12 @@ class Navbar extends Component {
     handleLogout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('email')
-        localStorage.removeItem('id')
-        localStorage.removeItem('isRecruiter')
+        localStorage.removeItem('name')
+        localStorage.removeItem('isPatient')
+        localStorage.removeItem('phone')
         let detailPage = null
         detailPage = this.props.history.push({
-            pathname: "/login",
+            pathname: "/homepage",
             state: {
             }
         })
@@ -36,50 +37,65 @@ class Navbar extends Component {
 
     render() {
         let navbar = null
-        
-        
+
+        if (localStorage.getItem('email') && localStorage.getItem('isPatient') == 'false') {
             navbar = (
                 <div>
-                <nav className="nav" style={{ height: "50px"}}>
-                    <span id="brandnav" style={{ paddingTop: "0px" }}>
+                    <nav className="nav" style={{ height: "50px" }}>
+                        <span id="brandnav" style={{ paddingTop: "0px" }}>
 
-                        <img src={logo} style={{ height: "45px", marginTop: "0px" }} />
-                    </span>
-                    <ul id="menunav">
-                        <li><a href="javascript:;">HOME</a></li>
-                        <li><a href="javascript:;">SERVICES</a></li>
-                        <li><a href="javascript:;"></a></li>
-                        <li onClick={this.handleLogout}><a >Logout</a></li>
-                    </ul>
-                </nav>
-                <SideNav
-                    onSelect={(selected) => {
-                        console.log(selected)
-                    }}
-                >
-                    <SideNav.Toggle />
-                    <SideNav.Nav defaultSelected="home">
-                        <NavItem eventKey="home">
-                            <NavIcon>
-                                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
-                            </NavIcon>
-                            <NavText>
-                                Home
-                            </NavText>
-                        </NavItem>
-                        <NavItem eventKey="charts">
-                            <NavIcon>
-                                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
-                            </NavIcon>
-                            <NavText>
-                                Charts
-                            </NavText>
-                        </NavItem>
-                    </SideNav.Nav>
-                </SideNav>
+                            <img src={logo} style={{ height: "45px", marginTop: "0px" }} />
+                        </span>
+                        <ul id="menunav">
+                            <li><a href="/doctor/dashboard">HOME</a></li>
+                            <li><a href="javascript:;">SERVICES</a></li>
+                            <li onClick={this.handleLogout}><a >Logout</a></li>
+                        </ul>
+                    </nav>
+                    <SideNav
+                        onSelect={(selected) => {
+                            console.log(selected)
+                        }}
+                    >
+                        <SideNav.Toggle />
+                        <SideNav.Nav defaultSelected="home">
+                            <NavItem eventKey="home">
+                                <NavIcon>
+                                    <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    Home
+                                </NavText>
+                            </NavItem>
+                            <NavItem eventKey="charts">
+                                <NavIcon>
+                                    <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    Charts
+                                </NavText>
+                            </NavItem>
+                        </SideNav.Nav>
+                    </SideNav>
                 </div>
             )
-        
+
+        }else{
+            navbar = (
+                <nav className="nav" style={{ height: "50px" }}>
+                        <span id="brandnav" style={{ paddingTop: "0px" }}>
+
+                            <img src={logo} style={{ height: "45px", marginTop: "0px" }} />
+                        </span>
+                        <ul id="menunav">
+                            <li><a href="/homepage">HOME</a></li>
+                            <li><a href="javascript:;">SERVICES</a></li>
+                            <li><a href="/login">Login</a></li>
+                        </ul>
+                </nav>
+            )
+        }
+
         return (
             <div class="containerFluid" >
                 {navbar}

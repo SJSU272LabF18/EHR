@@ -5,9 +5,7 @@ import { Redirect } from 'react-router';
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import jwt_decode from 'jwt-decode';
-import '../../App.css';
-import '../../Homepage.css'
-import logo from './../HomePage/logo.png'
+
 
 
 class DoctorLogin extends Component {
@@ -63,10 +61,11 @@ class DoctorLogin extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <div >
+            <div className="containerFluid">
                 <div className="col-md-12" style = {{margin : "auto"}}>
                     {redirectVar}
-                    <div className="doctorloginBox col-md-12 " >
+                    <div className="col-md-4"></div>
+                    <div className="doctorloginBox col-md-8 " >
                         <div className="col-md-12" style={{ textAlign: "center" }}>
                             <h1 style={{ color: "#4ABF91", fontWeight:"bolder" }}> Doctor's Login </h1>
                             <p style={{color:"#ff4848"}}>{this.props.errormsg}</p>

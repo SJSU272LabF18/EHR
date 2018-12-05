@@ -58,7 +58,7 @@ class Login extends Component {
     render() {
         let redirectVar = null;
         if (this.props.authFlag) {
-            redirectVar = <Redirect to="/" />
+            redirectVar = <Redirect to="/patient/dashboard" />
         }
         const { handleSubmit } = this.props;
 
@@ -71,11 +71,11 @@ class Login extends Component {
                     <a href="javascript:;"><img src={logo} style={{marginTop:"10px", opacity:"1"}}/></a>
                 </span>
                 <ul id="menu">
-                    <li><a href="javascript:;">HOME</a></li>
+                    <li><a href="/homepage">HOME</a></li>
                     <li><a href="javascript:;">SERVICES</a></li>
-                    <li><a href="javascript:;">NEW PATIENT</a></li>
-                    <li><a href="javascript:;">EXISTING PATIENT</a></li>
-                    <li><a href="javascript:;">ADMIN</a></li>
+                    <li><a href="/signup">NEW PATIENT</a></li>
+                    <li><a href="/login">EXISTING PATIENT</a></li>
+                    <li><a href="/doctor/login">ADMIN</a></li>
                 </ul>
                 </navbar>
                 <div className="col-md-12">
@@ -149,7 +149,8 @@ const mapDispatchStateToProps = dispatch => {
                     const decoded = jwt_decode(response.data.token)
                     localStorage.setItem('email',decoded.email )
                     localStorage.setItem('name',decoded.name )
-                    localStorage.setItem('userType',decoded.userType )
+                    localStorage.setItem('isPatient',decoded.userType )
+                    localStorage.setItem('phone',decoded.phone )
                     dispatch({ type: 'LOGIN', payload: response.data, statusCode: response.status })
                 })
                 .catch(error => {

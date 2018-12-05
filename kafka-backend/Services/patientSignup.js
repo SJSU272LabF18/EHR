@@ -26,6 +26,7 @@ function handle_request(data, callback){
                     email: data.email,
                     password: hashPass,
                     isPatient : data.isPatient,
+                    phone: data.phone,
                     created_at: today,
                     updated_at: today
                   });
