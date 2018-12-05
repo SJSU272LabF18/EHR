@@ -7,6 +7,7 @@ class Purpose extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            patientEmail: "",
             purpose: "",
             allergy: "",
             date: "",
@@ -31,7 +32,8 @@ class Purpose extends Component {
             bloodPressure: "",
             sugarLevel: "",
             heartRate: "",
-            bodyTemp: ""
+            bodyTemp: "",
+            diagnosisResult: ""
         }
         this.purposeHandler = this.purposeHandler.bind(this);
         this.allergyHandler = this.allergyHandler.bind(this);
@@ -48,6 +50,7 @@ class Purpose extends Component {
         this.heartRateHandler = this.heartRateHandler.bind(this);
         this.bodyTempHandler = this.bodyTempHandler.bind(this);
         this.submitPaitentRecord = this.submitPaitentRecord.bind(this);
+        this.diagnosisHandler = this.diagnosisHandler.bind(this);
     }
 
     purposeHandler = (e) => {
@@ -129,11 +132,27 @@ class Purpose extends Component {
 
         });
     }
+    diagnosisHandler = (e) => {
+        this.setState({
+            diagnosisResult: e.target.value,
+
+        });
+    }
+
+    componentDidMount(){
+        try{
+            this.setState({
+                patientEmail: this.props.location.state.patientEmail
+            })
+        }catch(e){
+
+        }
+    }
 
     submitPaitentRecord = (e) => {
 
         const data = {
-        
+            patientEmail: this.state.patientEmail,
             purpose: this.state.purpose,
             allergy: this.state.allergy,
             date: this.state.date,
@@ -158,7 +177,8 @@ class Purpose extends Component {
             bloodPressure: this.state.bloodPressure,
             sugarLevel: this.state.sugarLevel,
             heartRate: this.state.heartRate,
-            bodyTemp: this.state.bodyTemp
+            bodyTemp: this.state.bodyTemp,
+            diagnosisResult: this.state.diagnosisResult
 
         }
         console.log(data)
@@ -166,7 +186,7 @@ class Purpose extends Component {
         axios.post('http://localhost:3001/patientrecord', data,
             {
                 params: {
-                    userEmail: localStorage.getItem('email')
+                    patientEmail: this.state.patientEmail
                 }
             })
             .then(response => {
@@ -175,6 +195,12 @@ class Purpose extends Component {
                     this.setState({
                         onclick: true,
                         resultmsg: "Patient Record saved Successfully"
+                    })
+                    let detailPage = null
+                        detailPage = this.props.history.push({
+                        pathname: "/doctor/dashboard",
+                        state: {
+                        }
                     })
 
                 } else {
@@ -199,9 +225,9 @@ class Purpose extends Component {
             window.alert("Patient Record saved Successfully");
         }
         return (
-            <div className="col-md-12" >
+            <div className="col-md-12">
                 <div className="col-md-3"></div>
-                <div className="col-md-6 form-box">
+                <div className="col-md-6 form-box" style={{backgroundColor: "#fff"}}>
                     <div className="col-md-12 form-heading-box">
                         <h2 className="form-heading">Patient Visit Record</h2>
 
@@ -212,9 +238,9 @@ class Purpose extends Component {
                                 <div class=" form-group col-md-12">
                                     <label>Purpose of Visit</label>
                                     <div class="input-group">
-                                        <input type="radio" name="purpose" value="regular" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Regular checkup <br />
-                                        <input type="radio" name="purpose" value="existing" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Visit regarding existing  <br />
-                                        <input type="radio" name="purpose" value="new" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Visit regarding new case
+                                        <input type="radio" name="purpose" value="Regular Cases" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Regular checkup <br />
+                                        <input type="radio" name="purpose" value="Existing Cases" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Visit regarding existing  <br />
+                                        <input type="radio" name="purpose" value="New Cases" onChange={this.purposeHandler} defaultValue={this.state.purpose} /> Visit regarding new case
                                     </div>
                                 </div>
                             </div>
@@ -223,8 +249,7 @@ class Purpose extends Component {
                                     <label>Date of visit</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Date of Visit" type="date" name="date" onChange={this.dateHandler} defaultValue={this.state.date} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Date of Visit" type="date" name="date" onChange={this.dateHandler} defaultValue={this.state.date} />
                                     </div>
                                 </div>
                             </div>
@@ -233,17 +258,15 @@ class Purpose extends Component {
                                     <label>Height</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input "><span class="fa fa-address-book"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Height" type="text" name="height" onChange={this.heightHandler} defaultValue={this.state.height} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Height" type="text" name="height" onChange={this.heightHandler} defaultValue={this.state.height} />
                                     </div>
                                 </div>
                                 <div class=" form-group col-md-1"></div>
                                 <div class=" form-group col-md-5">
                                     <label>Weight</label>
                                     <div class="input-group">
-                                        <span class="input-group-addon icon-input"><i class="fa fa-weight"></i></span>
-                                        <input class="form-control right-border-none" placeholder="Weight" type="text" name="weight" onChange={this.weightHandler} defaultValue={this.state.weight} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <span class="input-group-addon icon-input"><i class="fa fa-address-book"></i></span>
+                                        <input class="form-control" placeholder="Weight" type="text" name="weight" onChange={this.weightHandler} defaultValue={this.state.weight} />
                                     </div>
                                 </div>
 
@@ -253,8 +276,8 @@ class Purpose extends Component {
                                     <label>Blood Pressure</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><i class="fa fa-stethoscope"></i></span>
-                                        <input class="form-control right-border-none" placeholder="Blood Pressure" type="text" name="bloodPressure" onChange={this.bloodPressureHandler} defaultValue={this.state.bloodPressure} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Blood Pressure" type="text" name="bloodPressure" onChange={this.bloodPressureHandler} defaultValue={this.state.bloodPressure} />
+                                        
                                     </div>
                                 </div>
                                 <div class=" form-group col-md-1"></div>
@@ -262,8 +285,8 @@ class Purpose extends Component {
                                     <label>Sugar Level</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><i class="fa fa-stethoscope"></i></span>
-                                        <input class="form-control right-border-none" placeholder="Sugar Level" type="text" name="sugarLevel" onChange={this.sugarLevelHandler} defaultValue={this.state.sugarLevel} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Sugar Level" type="text" name="sugarLevel" onChange={this.sugarLevelHandler} defaultValue={this.state.sugarLevel} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -273,8 +296,8 @@ class Purpose extends Component {
                                     <label>Heart Rate</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><i class="fa fa-heartbeat"></i></span>
-                                        <input class="form-control right-border-none" placeholder="Heart Rate" type="text" name="heartRate" onChange={this.heartRateHandler} defaultValue={this.state.heartRate} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Heart Rate" type="text" name="heartRate" onChange={this.heartRateHandler} defaultValue={this.state.heartRate} />
+                                        
                                     </div>
                                 </div>
                                 <div class=" form-group col-md-1"></div>
@@ -282,8 +305,8 @@ class Purpose extends Component {
                                     <label>Body Temperature</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><i class="fa fa-thermometer-three-quarters"></i></span>
-                                        <input class="form-control right-border-none" placeholder="Body Temperature" type="text" name="bodyTemp" onChange={this.bodyTempHandler} defaultValue={this.state.bodyTemp} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control " placeholder="Body Temperature" type="text" name="bodyTemp" onChange={this.bodyTempHandler} defaultValue={this.state.bodyTemp} />
+                                        
                                     </div>
                                 </div>
 
@@ -293,21 +316,32 @@ class Purpose extends Component {
                                     <label>Allergy</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-th-list"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Allergy" type="text" name="allergy" onChange={this.allergyHandler} defaultValue={this.state.allergy} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control " placeholder="Allergy" type="text" name="allergy" onChange={this.allergyHandler} defaultValue={this.state.allergy} />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class=" form-group col-md-12">
+                                <div class=" form-group col-md-12">
+                                    <label>Diagnosis Result</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-th-list"></span></span>
+                                        <input class="form-control " placeholder="Diagnosis Result" type="text" name="allergy" onChange={this.diagnosisHandler} defaultValue={this.state.diagnosisResult} />
+                                        
                                     </div>
                                 </div>
                             </div>
 
                             <div className="col-md-12" style={{ border: "thin" }}>
-                                <label>Medication Priscribed</label>
+                                <label>Medication Prescribed</label>
 
                                 <div class=" form-group col-md-12">
                                     <label>Medicine Name 1</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Medicine Name" type="text" name="medicine1" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Medicine Name" type="text" name="medicine1" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -324,8 +358,8 @@ class Purpose extends Component {
                                     <label>Duration</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-hourglass"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration1" onChange={this.durationHandler} defaultValue={this.state.duration} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Duration" type="text" name="duration1" onChange={this.durationHandler} defaultValue={this.state.duration} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -334,8 +368,8 @@ class Purpose extends Component {
                                     <label>Medicine Name 2</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Medicine Name" type="text" name="medicine2" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Medicine Name" type="text" name="medicine2" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -352,8 +386,8 @@ class Purpose extends Component {
                                     <label>Duration</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-hourglass"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration2" onChange={this.durationHandler} defaultValue={this.state.duration} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Duration" type="text" name="duration2" onChange={this.durationHandler} defaultValue={this.state.duration} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -362,8 +396,8 @@ class Purpose extends Component {
                                     <label>Medicine Name 3</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Medicine Name" type="text" name="medicine3" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Medicine Name" type="text" name="medicine3" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -380,8 +414,8 @@ class Purpose extends Component {
                                     <label>Duration</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-hourglass"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration3" onChange={this.durationHandler} defaultValue={this.state.duration} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Duration" type="text" name="duration3" onChange={this.durationHandler} defaultValue={this.state.duration} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -390,8 +424,8 @@ class Purpose extends Component {
                                     <label>Medicine Name 4</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Medicine Name" type="text" name="medicine4" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Medicine Name" type="text" name="medicine4" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -408,8 +442,8 @@ class Purpose extends Component {
                                     <label>Duration</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-hourglass"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration4" onChange={this.durationHandler} defaultValue={this.state.duration} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Duration" type="text" name="duration4" onChange={this.durationHandler} defaultValue={this.state.duration} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -418,8 +452,8 @@ class Purpose extends Component {
                                     <label>Medicine Name 5</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-list-alt"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Medicine Name" type="text" name="medicine5" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Medicine Name" type="text" name="medicine5" onChange={this.medicineHandler} defaultValue={this.state.medicine} />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -436,18 +470,20 @@ class Purpose extends Component {
                                     <label>Duration</label>
                                     <div class="input-group">
                                         <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-hourglass"></span></span>
-                                        <input class="form-control right-border-none" placeholder="Duration" type="text" name="duration5" onChange={this.durationHandler} defaultValue={this.state.duration} />
-                                        <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                        <input class="form-control" placeholder="Duration" type="text" name="duration5" onChange={this.durationHandler} defaultValue={this.state.duration} />
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div className="col-md-12" style={{ border: "thin" }}>
-                                <label>Need for Surgery </label>
-                                <br />
-                                <fieldset class="col-md-3 radio-group-box">
-                                    <input type="radio" value="Yes" id="yes" onChange={this.surgeryHandler} /><span style={{ marginRight: "35px" }}>Yes </span>
-                                    <input type="radio" value="No" id="no" onChange={this.surgeryHandler} /><span style={{ marginRight: "35px" }}>No </span>
-                                </fieldset>
+                                <div class=" form-group col-md-6">
+                                    <label>Need for Surgery </label>
+                                    <br />
+                                    <div class="input-group radio-group-box" >
+                                        <input type="radio" value="Yes" id="yes" onChange={this.surgeryHandler} /><span style={{ marginRight: "35px" }}>Yes </span>
+                                        <input type="radio" value="No" id="no" onChange={this.surgeryHandler} /><span style={{ marginRight: "35px" }}>No </span>
+                                    </div>
+                                </div>
 
                             </div>
                             <div className="col-md-12">

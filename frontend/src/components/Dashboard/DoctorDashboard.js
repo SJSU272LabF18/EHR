@@ -14,7 +14,7 @@ class DoctorDashboard extends Component {
             patients: [],
             patientName: ''
         }
-
+        this.getAllPrescriptions = this.getAllPrescriptions.bind(this)
     }
 
     componentDidMount() {
@@ -52,6 +52,15 @@ class DoctorDashboard extends Component {
 
     }
 
+    getAllPrescriptions(patient){
+        let detailPage = null
+        detailPage = this.props.history.push({
+            pathname: "/doctor/allprescriptions",
+            state: {
+                patient: patient
+            }
+        })
+    }
 
     render() {
 
@@ -71,8 +80,8 @@ class DoctorDashboard extends Component {
                         <td class="column100 column4" data-column="column4">{patient.phone}</td>
                         <td class="column100 column5" data-column="column5">{patient.email}</td>
                         <td>
-                            <a href="" class="" style={{ marginRight: "20px", marginLeft: '5px' }} target="_blank" data-toggle="tooltip" title="View!"><i class="glyphicon glyphicon-eye-open"></i></a>
-                            <a href="" class="" style={{ marginRight: "20px" }} target="_blank" data-toggle="tooltip" title="Old Forms!"><i class="glyphicon glyphicon-plus"></i></a>
+                            <a  class="" style={{ marginRight: "20px", marginLeft: '5px' }} data-toggle="tooltip" title="View!"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a onClick={() => this.getAllPrescriptions(patient)} class="" style={{ marginRight: "20px" }} data-toggle="tooltip" title="Old Forms!"><i class="glyphicon glyphicon-plus"></i></a>
                             <a href="" class="" data-toggle="tooltip" title="Download!"><i class="glyphicon glyphicon-save"></i></a>
                         </td>
 

@@ -13,6 +13,8 @@ var Emergency = require('./Services/patientEmergency')
 var DoctorLogin = require('./Services/doctorLogin')
 var GetPatients = require('./Services/getpatients')
 var PatientRecord = require('./Services/patientRecord');
+var GetPrescriptions = require('./Services/getprescriptions');
+var GetPatientStatistics = require('./Services/getpatientstatistics');
 
 function handleTopicRequest(topic_name,fname){
     //var topic_name = 'root_topic';
@@ -54,6 +56,7 @@ handleTopicRequest("patient_payment",Payment)
 
 handleTopicRequest("doctor_login",DoctorLogin)
 handleTopicRequest("get_patients",GetPatients)
-
+handleTopicRequest("get_prescriptions",GetPrescriptions)
 handleTopicRequest("patient_emergency",Emergency)
 handleTopicRequest("patient_record",PatientRecord)
+handleTopicRequest("get_patientstatistics",GetPatientStatistics)
