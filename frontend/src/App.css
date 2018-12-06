@@ -154,7 +154,7 @@ input[type=date] {
 
 .form-heading-box{
   margin-top:0px;
-  background-color:#143D66;
+  background-color:#012533;
   height: 60px;
   border-radius: 15px 15px 0px 0px;
 }
@@ -176,11 +176,17 @@ input[type=date] {
 }
 
 * #cf-context { 
-  width: 90%; 
-  height: 100vh; 
+  width: 100%; 
+  height: 100vh;
+  margin: 0px;
+  background: #012533; 
 }
 #form {
   /* height: 0px; */
   overflow: hidden;
 
 } 
+
+.conversational-form-inner:before{
+  background: #012533; 
+}
