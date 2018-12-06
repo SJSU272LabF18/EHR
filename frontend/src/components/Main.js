@@ -25,6 +25,8 @@ import dashboard from './PatientForms/dashboard';
 import PatientNavigation from './Navigation/PatientNavigation';
 import EditRegistration from './EditPatientForms/editRegistration';
 import EditEmergencyContact from './EditPatientForms/editEmergencyContact';
+import DrEditRegistration from './DoctorsideForms/drEditRegistration';
+import DrEditEmergencyContact from './DoctorsideForms/drEditEmergencyContact';
 
 
 //Create a Main Component
@@ -53,6 +55,8 @@ class Main extends Component {
                 <Route path="/doctor/allprescriptions" component={AllPrescriptions}/>
                 <Route path="/doctor/viewprescription" component={ViewPurpose}/>
                 <Route path="/doctor/analysis" component={AdminGraph}/>
+                <Route path="/doctor/edit/registration" component = {DrEditRegistration}/>
+                <Route path="/doctor/edit/emergency-contact" component ={DrEditEmergencyContact}/>
 
             </div>
         )
