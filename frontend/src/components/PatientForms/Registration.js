@@ -343,7 +343,7 @@ class Registration extends Component {
                 {loginroute}
                 {nextPage}
                 <div className="col-md-1"></div>
-                <div className="col-md-7 form-box">
+                <div className="col-md-7 form-box" style={{backgroundColor: "#fff"}}>
 
                     <div className="col-md-12 form-heading-box">
                         <h2 className="form-heading">Patient Registration</h2>
@@ -357,8 +357,8 @@ class Registration extends Component {
                             <label>First Name</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="First Name" type="text" name="fname" cf-questions="Hello, please tell me your first name." onChange={this.fnameHandler} defaultValue={this.state.fName}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control" placeholder="First Name" type="text" name="fname" cf-questions="Hello, please tell me your first name." onChange={this.fnameHandler} defaultValue={this.state.fName}/>
+                                
                             </div>
                             </div>
                         </div>
@@ -368,8 +368,8 @@ class Registration extends Component {
                             <label>Last Name</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="Last Name" type="text" name="lname" cf-questions="Ohkay {fname}, please tell me your last name." onChange={this.lnameHandler} defaultValue={this.state.lName}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control " placeholder="Last Name" type="text" name="lname" cf-questions="Ohkay {fname}, please tell me your last name." onChange={this.lnameHandler} defaultValue={this.state.lName}/>
+                                
                             </div>
                             </div>
                         </div>
@@ -379,8 +379,8 @@ class Registration extends Component {
                             <label>Address</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="Address" type="text" name="address" cf-questions="{fname} now, please tell me your address." onChange={this.addressHandler} defaultValue={this.state.address}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control " placeholder="Address" type="text" name="address" cf-questions="{fname} now, please tell me your address." onChange={this.addressHandler} defaultValue={this.state.address}/>
+                                
                             </div>
                             </div>
                             </div>
@@ -390,16 +390,16 @@ class Registration extends Component {
                             <label>City</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="City" type="text" name="city" cf-questions="{fname} Please, tell me your city " onChange={this.cityHandler} defaultValue={this.state.city}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control " placeholder="City" type="text" name="city" cf-questions="{fname} Please, tell me your city " onChange={this.cityHandler} defaultValue={this.state.city}/>
+                                
                             </div>
                             </div>
                             <div class=" form-group col-md-6">
                             <label>State</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="State" type="text" name="state" cf-questions="{fname} Please, tell me your state " onChange={this.stateHandler} defaultValue={this.state.state}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control " placeholder="State" type="text" name="state" cf-questions="{fname} Please, tell me your state " onChange={this.stateHandler} defaultValue={this.state.state}/>
+                                
                             </div>
                             </div>
                             </div>
@@ -409,16 +409,16 @@ class Registration extends Component {
                             <label>Zip Code</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="glyphicon glyphicon-home"></span></span>
-                                <input class="form-control right-border-none" placeholder="Zip Code" type="text" name="zip" cf-questions="{fname} Please, tell me your zipcode" onChange={this.zipHandler} defaultValue={this.state.zip}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control " placeholder="Zip Code" type="text" name="zip" cf-questions="{fname} Please, tell me your zipcode" onChange={this.zipHandler} defaultValue={this.state.zip}/>
+                                
                             </div>
                             </div>
                             <div class=" form-group col-md-6">
                             <label>Phone</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input"><span class="fa fa-address-book"></span></span>
-                                <input class="form-control right-border-none" placeholder="Phone" type="text" name="phone" cf-questions="{fname} Please, tell me your contact number " onChange={this.phoneHandler} defaultValue={this.state.phone}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control " placeholder="Phone" type="text" name="phone" cf-questions="{fname} Please, tell me your contact number " onChange={this.phoneHandler} defaultValue={this.state.phone}/>
+                                
                             </div>
 
 
@@ -428,8 +428,8 @@ class Registration extends Component {
                             <label>Gender</label>
                             <div class="input-group">
                                 <span class="input-group-addon icon-input "><span class="glyphicon glyphicon-user"></span></span>
-                                <input class="form-control right-border-none" placeholder="Gender" type="text" name="gender" cf-questions="{fname} Please, tell me your gender " onChange={this.genderHandler} defaultValue={this.state.gender}/>
-                                <span class="input-group-addon transparent icon-input"><i class="fa fa-microphone icon-size"></i></span>
+                                <input class="form-control" placeholder="Gender" type="text" name="gender" cf-questions="{fname} Please, tell me your gender " onChange={this.genderHandler} defaultValue={this.state.gender}/>
+                                
                             </div>
                                 {/* <fieldset  id="gender" name="gender" cf-questions="Please, choose your gender from following. <span>Male</span>, <span>Female </span>or<span>Other</span>"> */}
                                     {/* <input type="radio" cf-label="Male" value="Male" id="male" onChange={this.genderHandler} checked={this.state.gender === "Male"} />Male<br/>
@@ -470,7 +470,7 @@ class Registration extends Component {
                 </div>
 
 
-                <div className="col-md-3 ">
+                <div className="col-md-3 " style={{paddingRight: "0px"}}>
                     <div id="cf-context" role="cf-context" cf-context></div>
                 </div>
 
