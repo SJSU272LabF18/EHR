@@ -13,13 +13,18 @@ import Insurance from './PatientForms/Insurance';
 // import sidebar from './Sidebar/sidebar';
 import HomePage from './HomePage/HomePage';
 import DoctorDashboard from './Dashboard/DoctorDashboard';
-import DownloadForm from './Dashboard/DownloadForm'
+import AllPrescriptions from './Dashboard/AllPrescriptions';
+import ViewPurpose from './Dashboard/ViewPurpose';
+import DownloadForm from './Dashboard/DownloadForm';
+import AdminGraph from './Dashboard/AdminGraphs';
 
 import DoctorLogin from './Login/doctorLogin';
 
 import Purpose from './PatientForms/Purpose';
 import dashboard from './PatientForms/dashboard';
 import PatientNavigation from './Navigation/PatientNavigation';
+import EditRegistration from './EditPatientForms/editRegistration';
+import EditEmergencyContact from './EditPatientForms/editEmergencyContact';
 
 
 //Create a Main Component
@@ -33,18 +38,21 @@ class Main extends Component {
                 <Route path="/patient" component={PatientNavigation}/>
                 <Route path="/homepage" component={HomePage}/>
                 <Route path="/doctor" component={Navigation}/>
-                <Route path="/patient-registration" component={Registration}/>
+                <Route path="/patient/registration" component={Registration}/>
+                <Route path="/patient/edit/registration" component={EditRegistration}/>
+                <Route path="/patient/edit/emergency-contact" component={EditEmergencyContact}/>
                 <Route path="/payment-details" component={PaymentDetails}/>
-                <Route path="/emergency-contact" component={EmergencyContact}/>
+                <Route path="/patient/emergency-contact" component={EmergencyContact}/>
                 {/* <Route path="/sidebar" component={sidebar}/> */}
-                <Route path="/purpose" component={Purpose}/>
+                <Route path="/doctor/patient-record" component={Purpose}/>
                 <Route path="/insurance" component={Insurance}/>
-
-                {/* <Route path="/sidebar" component={sidebar}/> */}
                 <Route path="/doctor/dashboard" component={DoctorDashboard}/>
                 <Route path="/download" component={DownloadForm}/>
                 <Route path="/patient/dashboard" component={dashboard}/>
                 <Route path="/doctor/login" component={DoctorLogin}/>
+                <Route path="/doctor/allprescriptions" component={AllPrescriptions}/>
+                <Route path="/doctor/viewprescription" component={ViewPurpose}/>
+                <Route path="/doctor/analysis" component={AdminGraph}/>
 
             </div>
         )
