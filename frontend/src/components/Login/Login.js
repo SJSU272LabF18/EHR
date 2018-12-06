@@ -25,7 +25,7 @@ class Login extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="email" {...field.input} style={{ backgroundColor: "#75BDA1", opacity: "0.8", height: "50px", borderColor: "#40896D" }} />
+                <input className="form-control login-signup" type="email" {...field.input} style={{ backgroundColor: "#75BDA1", opacity: "1", height: "50px", borderColor: "#40896D" }} />
                 <div className="text-help" style={{color:"#F5160B"}}>
                     {touched ? error : ""}
                 </div>
@@ -39,7 +39,7 @@ class Login extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="password" {...field.input} style={{ backgroundColor: "#75BDA1", opacity: "0.8", height: "50px", borderColor: "#40896D" }} />
+                <input className="form-control login-signup" type="password" {...field.input} style={{ backgroundColor: "#75BDA1", opacity: "1", height: "50px", borderColor: "#40896D" }} />
                 <div className="text-help" style={{color:"#F5160B"}}>
                     {touched ? error : ""}
                 </div>
@@ -89,7 +89,7 @@ class Login extends Component {
                         <div className="form-group col-md-12">
                             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
 
-                                <Field style={{ backgroundColor: "#3FF8F0", opacity: "15" }}
+                                <Field 
                                     label="Email"
                                     name="email"
                                     component={this.renderFieldEmail}

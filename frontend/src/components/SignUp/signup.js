@@ -24,7 +24,7 @@ class Signup extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="text" {...field.input} style={{backgroundColor:"#75BDA1",opacity:"0.8", height:"50px", borderColor:"#40896D"}}/>
+                <input className="form-control login-signup" type="text" {...field.input} style={{backgroundColor:"#75BDA1",opacity:"1", height:"50px", borderColor:"#40896D"}}/>
                 <div className="text-help" style={{color:"#F5160B"}}>
                     {touched ? error : ""}
                 </div>
@@ -39,7 +39,7 @@ class Signup extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="email" {...field.input} style={{backgroundColor:"#75BDA1",opacity:"0.8", height:"50px", borderColor:"#40896D"}}/>
+                <input className="form-control login-signup" type="email" {...field.input} style={{backgroundColor:"#75BDA1",opacity:"1", height:"50px", borderColor:"#40896D"}}/>
                 <div className="text-help" style={{color:"#F5160B"}}>
                     {touched ? error : ""}
                 </div>
@@ -53,7 +53,7 @@ class Signup extends Component {
         return (
             <div className={className}>
                 <label>{field.label}</label>
-                <input className="form-control login-signup" type="password" {...field.input}   style={{backgroundColor:"#75BDA1",opacity:"0.8", height:"50px", borderColor:"#40896D", }}/>
+                <input className="form-control login-signup" type="password" {...field.input}   style={{backgroundColor:"#75BDA1",opacity:"1", height:"50px", borderColor:"#40896D", }}/>
                 <div className="text-help">
                     {touched ? error : ""}
                 </div>
@@ -93,8 +93,8 @@ class Signup extends Component {
                 </navbar>
             <div className="col-md-12">
                 {redirectVar}
-                <div className="signupBox col-md-12" >
-                    <div className="col-md-12" style={{textAlign:"center"}}>
+                <div className="signupBox col-md-12" style={{paddingTop:"0px", marginTop: "0px"}} >
+                    <div className="col-md-12" style={{textAlign:"center", paddingTop:"0px", marginTop:"0px"}}>
                         <h1 style={{color:"#4ABF91", fontWeight:"bolder"}}> Signup </h1>
                         <h4>Returning Patient? <Link to="/login">Login</Link></h4>
                         <p style={{color:"#ff4848"}}>{this.props.errormsg}</p>
