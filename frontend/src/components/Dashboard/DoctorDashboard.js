@@ -15,6 +15,7 @@ class DoctorDashboard extends Component {
             patientName: ''
         }
         this.getAllPrescriptions = this.getAllPrescriptions.bind(this)
+        this.getAllForms = this.getAllForms.bind(this);
     }
 
     componentDidMount() {
@@ -62,6 +63,16 @@ class DoctorDashboard extends Component {
         })
     }
 
+    getAllForms(patient){
+        let formPage = null
+        formPage = this.props.history.push({
+            pathname: "/doctor/edit/registration",
+            state: {
+                email: patient
+            }
+        })
+    }
+
     render() {
 
 
@@ -80,7 +91,7 @@ class DoctorDashboard extends Component {
                         <td class="column100 column4" data-column="column4">{patient.phone}</td>
                         <td class="column100 column5" data-column="column5">{patient.email}</td>
                         <td>
-                            <a  class="" style={{ marginRight: "20px", marginLeft: '5px' }} data-toggle="tooltip" title="View!"><i class="glyphicon glyphicon-eye-open"></i></a>
+                            <a onClick={() => this.getAllForms(patient.email)} class="" style={{ marginRight: "20px", marginLeft: '5px' }} data-toggle="tooltip" title="View!"><i class="glyphicon glyphicon-eye-open"></i></a>
                             <a onClick={() => this.getAllPrescriptions(patient)} class="" style={{ marginRight: "20px" }} data-toggle="tooltip" title="Old Forms!"><i class="glyphicon glyphicon-plus"></i></a>
                             <a href="" class="" data-toggle="tooltip" title="Download!"><i class="glyphicon glyphicon-save"></i></a>
                         </td>
